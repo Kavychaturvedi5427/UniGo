@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="15dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/forgottxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot\nPassword!"
+                    android:textColor="@color/text_primary"
+                    android:textSize="25sp"
+                    android:layout_marginStart="25sp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/lexend"
+                    />
+                <TextView
+                    android:id="@+id/subtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/forgottxt"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginStart="25dp"
+                    android:fontFamily="@font/lexend"
+                    android:text="No Worries, we'll help"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp" />
+
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/forgot"
+                    android:layout_alignParentEnd="true"
+                    android:rotation="-25"
+                    />
+
+                <View
+                    android:id="@+id/div1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/subtxt"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:id="@+id/EnterEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/div1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/lexend"
+                    android:text="@string/FormEmail"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/EnterEmail"
+                    android:layout_marginStart="25sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="25sp"
+                    android:hint="Enter Registered Email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailtxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lexend"
+                        android:inputType="textEmailAddress"
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/cardview_light_background"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/emailLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/confirmBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:gravity="center"
+                        android:text="Confirm"
+                        android:elevation="10dp"
+                        android:textStyle="bold"
+                        android:background="@drawable/custom_btn"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/cancelBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:gravity="center"
+                        android:text="Cancel"
+                        android:elevation="10dp"
+                        android:textStyle="bold"
+                        android:background="@drawable/custom_btn"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+</ScrollView>
