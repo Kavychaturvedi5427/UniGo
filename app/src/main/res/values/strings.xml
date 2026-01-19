@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">UniGo</string>
+    <string name="tagLine">Productivity, minus the drama.</string>
+    <string name="copyright">© 2026 UniGo</string>
+    <string name="version">v1.0.0</string>
+    <string name="DevMessage">Designed with intent</string>
+    <string name="LoginMain">Welcome to UniGo</string>
+    <string name="ContentDescriptionApplogo">AppLogo</string>
+    <string name="secondTag">Plan smarter. Stress less.</string>
+    <string name="LoginBtn">Already a user?\nLogin</string>
+    <string name="SignupBtn">New Customer?\n Sign Up</string>
+    <string name="LoginTxt">Login!\nTo UniGo</string>
+    <string name="Illustration">RocketIllustraction</string>
+    <string name="LoginSubtxt">Pick up where you left off.</string>
+    <string name="FormName">Name</string>
+    <string name="InputLayout">Enter Your Full Name</string>
+    <string name="FormEmail">Email</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="FormPass">Password</string>
+    <string name="PasswordInput">Enter Your Password</string>
+    <string name="ForgotPass">Forgot Password? Reset Here</string>
+    <string name="signup_subtxt"><![CDATA[Join UniGo & get started]]></string>
+    <string name="signuptxt">Create Account</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+
+
 </resources>

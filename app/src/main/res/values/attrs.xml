@@ -1,0 +1,4 @@
+<resources>
+    <attr name="appBackground" format="color"/>
+    <attr name="appSurface" format="color"/>
+</resources>
