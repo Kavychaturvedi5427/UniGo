@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniGo">
 
-        <!--   splash activity -->
+        <!-- Splash activity -->
         <activity
             android:name=".MainSplash"
             android:exported="true">
@@ -22,9 +23,11 @@
             </intent-filter>
         </activity>
 
+        <!-- Choose Auth -->
         <activity
             android:name=".ChooseAuth"
             android:exported="true" />
+
     </application>
 
 </manifest>
