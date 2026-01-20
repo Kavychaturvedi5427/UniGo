@@ -1,17 +1,5 @@
 <resources>
 
-    <style name="Theme.UniGo" parent="Theme.MaterialComponents.NoActionBar">
-
-        <!-- Dark overrides -->
-        <item name="colorSurface">@color/mint_dark</item>
-        <item name="android:textColorPrimary">@color/text_on_dark</item>
-        <item name="android:statusBarColor">@color/mint_dark</item>
-        <item name="android:windowLightStatusBar">false</item>
-
-        <item name="appBackground">@color/mint_dark</item>
-        <item name="appSurface">@color/mint_primary</item>
-        <item name="android:textColor">@color/white</item>
-
-    </style>
+    <style name="Theme.UniGo" parent="Theme.MaterialComponents.NoActionBar"/>
 
 </resources>
