@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.UniGo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.UniGo" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- Primary -->
         <item name="colorPrimary">@color/mint_primary</item>
