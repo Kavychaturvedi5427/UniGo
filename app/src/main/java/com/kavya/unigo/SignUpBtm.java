@@ -105,6 +105,7 @@ public class SignUpBtm extends BottomSheetDialogFragment {
         String Email = email.getText() != null ? email.getText().toString().trim().replaceAll("\\s+", "").replaceAll("[\\u200B-\\u200D\\uFEFF]", "").toLowerCase() : "";
         String Pass = password.getText() != null ? password.getText().toString().trim() : "";
         String CPass = confirmpass.getText() != null ? confirmpass.getText().toString().trim() : "";
+        Boolean isProfileComplete = false;
 
         if (Name.isEmpty() || Email.isEmpty() || Pass.isEmpty() || CPass.isEmpty()) {
             showMessage("You can't leave any of the fields blank.");
@@ -140,6 +141,7 @@ public class SignUpBtm extends BottomSheetDialogFragment {
             userData.put("name", Name);
             userData.put("email", Email);
             userData.put("createdAt", com.google.firebase.firestore.FieldValue.serverTimestamp());
+            userData.put("isProfileComplete",isProfileComplete);
 
             db.collection("users").document(uid).set(userData).addOnSuccessListener(unused -> {
                 Toast.makeText(getActivity(), "Data Stored Safely. You can proceed to Login.", Toast.LENGTH_SHORT).show();
