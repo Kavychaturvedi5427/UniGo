@@ -16,6 +16,7 @@
 
         <!-- Text -->
         <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="fontFamily">@font/lexend</item>
 
         <!-- Status Bar -->
         <item name="android:statusBarColor">@color/mint_dark</item>
