@@ -22,6 +22,19 @@
     <string name="signup_subtxt"><![CDATA[Join UniGo & get started]]></string>
     <string name="signuptxt">Create Account</string>
     <string name="enter_your_full_name">Enter your full name</string>
+    <string name="completeBtmWelcome">Complete Your Profile</string>
+    <string name="completeBtmSubtxt">Help us personalize your UniGo experience</string>
+    <string name="phone">Phone</string>
+    <string name="formphone">Enter your phone number</string>
+    <string name="university">University</string>
+    <string name="formuniversity">Enter university name</string>
+    <string name="college">College</string>
+    <string name="formcollege">Enter college name</string>
+    <string name="course">Course</string>
+    <string name="formcourse">Enter course name</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 
 
 </resources>
