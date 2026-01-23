@@ -37,6 +37,7 @@ android {
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation("com.airbnb.android:lottie:6.7.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
     implementation("com.google.firebase:firebase-analytics")
