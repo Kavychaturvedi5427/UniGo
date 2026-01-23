@@ -2,6 +2,7 @@ package com.kavya.unigo;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -152,6 +153,8 @@ public class LoginBtm extends BottomSheetDialogFragment {
                 return;
             }
             showMessage("login Successful");
+            Intent intent = new Intent(getActivity(),Dashboard.class);
+            startActivity(intent);
             dismiss();
         }).addOnFailureListener(e -> showMessage(
                 e.getMessage() != null ? e.getMessage() : "Login failed"
