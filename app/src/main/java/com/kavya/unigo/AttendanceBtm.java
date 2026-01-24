@@ -33,6 +33,7 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String uid;
+    private AttendanceUpdateListener listener;
 
     @Nullable
     @Override
@@ -53,6 +54,8 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
 
         save.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
+
+            // fetching the values from the view groups....
             String attendedStr = Attended.getText() != null
                     ? Attended.getText().toString().trim() : "";
             String totalStr = Total.getText() != null
@@ -63,9 +66,11 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
                 Total.setError("Required");
                 return;
             }
+            // typecasting to int...
             int attendedToday = Integer.parseInt(attendedStr);
             int totalToday = Integer.parseInt(totalStr);
 
+            // validating
             if (attendedToday > totalToday || totalToday <= 0) {
                 Total.setError("Invalid values");
                 return;
@@ -74,11 +79,14 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
             // storing the attendance in the db...
             db.collection("users").document(uid).get().addOnSuccessListener(documentSnapshot -> {
                 long oldAttended = 0, oldTotal = 0;
+
+                // checking if the attendance field exit or not ....
                 if (documentSnapshot.exists() && documentSnapshot.contains("attendance")) {
+                    // if exist then get the value which is also a map so type cast it ....
                     Map<String, Object> attendance = (Map<String, Object>) documentSnapshot.get("attendance");
                     if (attendance != null) {
+                        // within the map fetching the attended val and total val...
                         oldAttended = attendance.get("attended") != null ? (long) attendance.get("attended") : 0;
-
                         oldTotal = attendance.get("total") != null ? (long) attendance.get("total") : 0;
                     }
                 }
@@ -86,7 +94,7 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
                 long newAttended = oldAttended + attendedToday;
                 long newtotal = oldTotal + totalToday;
 
-
+                // updating the old attendance with the new one ....
                 Map<String, Object> attendanceMap = new HashMap<>();
                 attendanceMap.put("attended", newAttended);
                 attendanceMap.put("total", newtotal);
@@ -98,7 +106,11 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
                 db.collection("users").document(uid).set(update, SetOptions.merge()).addOnSuccessListener(unused -> {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(getContext(), "Attendance stored.", Toast.LENGTH_SHORT).show();
-                            dismiss();
+                            if (listener != null) {
+                                // now call the onUpadate() method which will load the data.....
+                                listener.onUpdate();
+                                dismiss();
+                            }
                         })
                         .addOnFailureListener(e -> {
                             progressBar.setVisibility(View.GONE);
@@ -116,10 +128,7 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
                     dismiss();
                 }
             });
-
-
         });
-
         return view;
     }
 
@@ -150,4 +159,10 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
         });
         return dialog;
     }
+
+    // this will recieve the reference of the activity which is opening the btm.... and store it in...
+    public void SetattendanceUpdateListerenr(AttendanceUpdateListener List) {
+        this.listener = List;
+    }
+
 }

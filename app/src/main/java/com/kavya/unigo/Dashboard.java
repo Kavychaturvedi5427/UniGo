@@ -11,22 +11,26 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
-public class Dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
 
-    TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, CardCollege, CardCourse, tagline;
+    TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni,
+            CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi;
     CardView AttendanceCard;
+    LottieAnimationView attendindi;
     ImageView logout;
     ProgressBar progressBar;
     FirebaseAuth auth;
     FirebaseFirestore db;
     String uid;
 
+    AttendanceUpdateListener listener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,13 @@ public class Dashboard extends AppCompatActivity {
 //        logout = findViewById(R.id.logout);
         progressBar = findViewById(R.id.Progress);
         tagline = findViewById(R.id.tagline);
+        attendindi = findViewById(R.id.attendindicator);
+        // bind these to attendance card views
+        totallec = findViewById(R.id.TotalLectures);
+        attendedlec = findViewById(R.id.attended);
+        unattendedlect = findViewById(R.id.Absentlecutre);
+        attenPercent = findViewById(R.id.percentage);
+//        SignIndi = findViewById(R.id.indinote);
 
         AttendanceCard = findViewById(R.id.attendanceCard);
 
@@ -61,10 +72,14 @@ public class Dashboard extends AppCompatActivity {
         loadUserData();
         loadAttendance();
 
-        AttendanceCard.setOnClickListener(v->{
+        AttendanceCard.setOnClickListener(v -> {
             AttendanceBtm attendanceBtm = new AttendanceBtm();
-            attendanceBtm.show(getSupportFragmentManager(),"attendanceBtm");
+            // pass reference of this activity to the btm to tell that this is the one who's updating the data...
+            attendanceBtm.SetattendanceUpdateListerenr(this);
+            attendanceBtm.show(getSupportFragmentManager(), "attendanceBtm");
         });
+
+//        SignIndi.setText();
 
 //        logout.setOnClickListener(v->{
 //            progressBar.setVisibility(View.VISIBLE);
@@ -113,6 +128,12 @@ public class Dashboard extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        attendindi.pauseAnimation();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         getGreeting();
@@ -127,33 +148,44 @@ public class Dashboard extends AppCompatActivity {
 
                     if (!doc.exists() || !doc.contains("attendance")) {
                         // First-time user (no attendance yet)
-                        // You can show placeholders like "---"
                         return;
                     }
 
                     Object attendanceObj = doc.get("attendance");
                     if (!(attendanceObj instanceof java.util.Map)) return;
 
-                    @SuppressWarnings("unchecked")
+                    // type casting the attendanceObj into Map....
                     java.util.Map<String, Object> attendance =
                             (java.util.Map<String, Object>) attendanceObj;
 
+                    // fetching the attendance value ...
                     long attended = attendance.get("attended") != null
                             ? (long) attendance.get("attended") : 0;
 
                     long total = attendance.get("total") != null
                             ? (long) attendance.get("total") : 0;
 
+                    long unattended = total - attended;
+
                     int percent = total > 0
                             ? (int) ((attended * 100) / total)
                             : 0;
 
-                    // TODO: bind these to attendance card views
-                    // Example:
-                    // attendancePercent.setText(percent + "%");
-                    // attendanceCount.setText(attended + " / " + total);
 
-                    // TODO: status + lottie logic here
+                    totallec.setText("Total Lectures: " + total);
+                    attendedlec.setText("Attended Lectures: " + attended);
+                    unattendedlect.setText("Unattended Lectures: " + unattended);
+                    attenPercent.setText("Attendance Percentage: " + percent + "%");
+
+                    // status + lottie logic here
+                    if (percent >= 90) {
+                        attendindi.setAnimation(R.raw.greenindi);
+                    } else if (percent >= 75) {
+                        attendindi.setAnimation(R.raw.yellowindi);
+                    } else {
+                        attendindi.setAnimation(R.raw.redindi);
+                    }
+                    attendindi.playAnimation();
 
                 })
                 .addOnFailureListener(e -> showMessage(e.getMessage()));
@@ -178,5 +210,10 @@ public class Dashboard extends AppCompatActivity {
 
     private void showMessage(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUpdate() {
+        loadAttendance();
     }
 }
