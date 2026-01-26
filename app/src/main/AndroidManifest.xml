@@ -15,7 +15,7 @@
 
         <!-- Splash activity -->
         <activity
-            android:name=".MainSplash"
+            android:name=".ui.splash.MainSplash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +25,11 @@
 
         <!-- Choose Auth -->
         <activity
-            android:name=".ChooseAuth"
+            android:name=".ui.auth.ChooseAuth"
             android:exported="true" />
 
         <!-- Dashboard -->
-        <activity android:name=".Dashboard"
+        <activity android:name=".ui.landing.Dashboard"
             android:exported="true"/>
 
     </application>

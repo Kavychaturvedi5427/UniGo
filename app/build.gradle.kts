@@ -32,6 +32,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -43,7 +47,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-firestore")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.8.6")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
