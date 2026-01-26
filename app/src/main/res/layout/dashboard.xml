@@ -30,12 +30,12 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottie1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="4dp"
-                android:rotation="-10"
+                android:rotation="-6"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/dashlottie" />
@@ -49,7 +49,7 @@
                 android:layout_marginTop="4dp"
                 android:text="Username"
                 android:textColor="@color/text_primary"
-                android:textSize="18sp" />
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/tagline"
@@ -60,28 +60,26 @@
                 android:layout_marginTop="4dp"
                 android:text="Your journey, simplified."
                 android:textColor="@color/text_primary"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textStyle="normal"
                 app:fontFamily="@font/cavet" />
         </RelativeLayout>
 
         <View
             android:id="@+id/div1"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/welcomeRl"
+            android:layout_height="0.6dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
             android:background="@color/text_primary"
-
+            android:alpha="0.4"
             />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/usercard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/div1"
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
@@ -102,7 +100,7 @@
                     android:layout_marginTop="5dp"
                     android:text="Your Info"
                     android:textColor="@color/text_primary"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:fontFamily="@font/cavet" />
 
@@ -193,13 +191,12 @@
         <View
             android:id="@+id/div2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/usercard"
+            android:layout_height="0.6dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/text_primary" />
+            android:background="@color/text_primary"
+            android:alpha="0.4"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/attendanceCard"
@@ -298,7 +295,9 @@
                             android:layout_marginBottom="2dp"
                             android:text="Attendance Percentage: ---"
                             android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            />
 
 
                     </LinearLayout>
@@ -312,7 +311,7 @@
                     android:layout_below="@id/info"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:paddingTop="8dp"
+                    android:paddingTop="4dp"
                     android:paddingBottom="12dp">
 
                     <!-- Below 75% -->
@@ -408,7 +407,7 @@
             android:id="@+id/Progress"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:indeterminateDrawable="@drawable/progressbar"
             android:visibility="gone" />
 
