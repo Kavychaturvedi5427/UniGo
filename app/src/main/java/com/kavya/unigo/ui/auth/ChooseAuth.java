@@ -1,4 +1,4 @@
-package com.kavya.unigo;
+package com.kavya.unigo.ui.auth;
 
 import static android.app.ProgressDialog.show;
 
@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+
+import com.kavya.unigo.R;
 
 public class ChooseAuth extends AppCompatActivity {
     @Override

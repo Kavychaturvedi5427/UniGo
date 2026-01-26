@@ -1,4 +1,4 @@
-package com.kavya.unigo;
+package com.kavya.unigo.ui.landing;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.kavya.unigo.R;
 
 import java.util.HashMap;
 import java.util.Map;

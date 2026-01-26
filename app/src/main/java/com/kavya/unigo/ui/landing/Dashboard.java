@@ -1,8 +1,6 @@
-package com.kavya.unigo;
+package com.kavya.unigo.ui.landing;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,8 +11,8 @@ import androidx.cardview.widget.CardView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.kavya.unigo.R;
 
 import java.util.Calendar;
 

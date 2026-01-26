@@ -1,4 +1,4 @@
-package com.kavya.unigo;
+package com.kavya.unigo.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatImageView;
+
+import com.kavya.unigo.ui.auth.ChooseAuth;
+import com.kavya.unigo.R;
 
 public class MainSplash extends AppCompatActivity {
     @Override
