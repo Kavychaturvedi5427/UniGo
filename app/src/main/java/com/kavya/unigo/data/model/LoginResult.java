@@ -7,7 +7,7 @@ public abstract class LoginResult {
 
     // Firebase login failed
     public static class Error extends LoginResult {
-        public final String message;
+        public String message;
 
         public Error(String message) {
             this.message = message;
