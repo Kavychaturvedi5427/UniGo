@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="30dp">
+
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="25dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.SmallComponent" />
+
+        <TextView
+            android:id="@+id/assignmenttxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/AssignmentHead"
+            android:textColor="@color/text_primary"
+            android:textSize="33sp" />
+
+        <ImageView
+            android:id="@+id/RocketIllustration"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:contentDescription="@string/Illustration"
+            android:elevation="10dp"
+            android:src="@drawable/assignment"
+            android:translationX="40dp"
+            android:translationY="2dp" />
+
+        <TextView
+            android:id="@+id/assinTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/assignmenttxt"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/Assignment_Tagline"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/div1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/assinTag"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/gray" />
+
+        <TextView
+            android:id="@+id/EnterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/div1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/lexend"
+            android:text="@string/title"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titlelay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/EnterTitle"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:hint="Enter your title"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#20000000"
+            app:boxStrokeWidthFocused="2dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titletxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend"
+                android:inputType="text"
+                android:textSize="14sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/EnterSubj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titlelay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/lexend"
+            android:text="Subject"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/subjLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/EnterSubj"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:hint="Enter your subject"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#20000000"
+            app:boxStrokeWidthFocused="2dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/subjtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend"
+                android:inputType="text"
+                android:textSize="14sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/EnterDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subjLay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/lexend"
+            android:text="Description"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/desclay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/EnterDesc"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:hint="Enter your description"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#20000000"
+            app:boxStrokeWidthFocused="2dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/desctxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:textSize="14sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/EnterDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/desclay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/lexend"
+            android:text="Due Date"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/datelay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/EnterDate"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:hint="Enter due date"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#20000000"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/baseline_calendar_month_24"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="date"
+                android:cursorVisible="false"
+                android:textSize="14sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/saveAssignment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datelay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_btn"
+            android:textStyle="bold"
+            android:text="Save Assignment"
+            android:padding="10dp"
+            android:elevation="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+
+        <ProgressBar
+            android:id="@+id/Progress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="16dp"
+            android:indeterminateDrawable="@drawable/progressbar"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</ScrollView>
