@@ -38,7 +38,8 @@ public class LoginViewModel extends ViewModel {
         loginState.setValue(new LoginState.Loading());
 
         // proceed further for authentication with firebase...
-        authRepository.login(em, ps, result -> {        // result is the callback lambda function.....
+        authRepository.login(em, ps, result -> {
+            // result is the callback lambda function..... result -> { ... } is shorthand for onResult(LoginResult result) { ... }
             if (result instanceof LoginResult.Success) {
                 loginState.postValue(new LoginState.Success());
             } else {
@@ -48,6 +49,23 @@ public class LoginViewModel extends ViewModel {
                         )
                 );
             }
+
+            // explanation of above .....
+//            authRepository.login(em, ps, new LoginCallback() {
+//                @Override
+//                public void onResult(LoginResult result) {
+//                    if (result instanceof LoginResult.Success) {
+//                        loginState.postValue(new LoginState.Success());
+//                    } else {
+//                        loginState.postValue(
+//                                new LoginState.Error(
+//                                        ((LoginResult.Error) result).message
+//                                )
+//                        );
+//                    }
+//                }
+//            });
+
 
         });
     }
