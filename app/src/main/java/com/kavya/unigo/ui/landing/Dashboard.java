@@ -1,6 +1,8 @@
 package com.kavya.unigo.ui.landing;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,48 +15,60 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
+import com.kavya.unigo.databinding.DashboardBinding;
+import com.kavya.unigo.ui.features.Assignment;
 
 import java.util.Calendar;
 
 public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
 
     TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni,
-            CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi;
-    CardView AttendanceCard;
-    LottieAnimationView attendindi;
+            CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi, warningtxt;
+    CardView AttendanceCard, userinfocard, assignmentCard;
+    LottieAnimationView attendindi, profileIndi;
     ImageView logout;
     ProgressBar progressBar;
     FirebaseAuth auth;
     FirebaseFirestore db;
     String uid;
 
+    // Dashboard binding...
+    DashboardBinding binding;
     AttendanceUpdateListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard);
 
-        greetings = findViewById(R.id.greetingstxt);
-        welcomeName = findViewById(R.id.name);
+        binding = DashboardBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        CardName = findViewById(R.id.infoname);
-        CardPhone = findViewById(R.id.infophone);
-        CardEmail = findViewById(R.id.infoemail);
-        CardUni = findViewById(R.id.infouni);
-        CardCollege = findViewById(R.id.infocollege);
-        CardCourse = findViewById(R.id.infocourse);
+        greetings = binding.greetingstxt;
+        welcomeName = binding.name;
+        warningtxt = binding.warningtext;
+
+        CardName = binding.infoname;
+        CardPhone = binding.infophone;
+        CardEmail = binding.infoemail;
+        CardUni = binding.infouni;
+        CardCollege = binding.infocollege;
+        CardCourse = binding.infocourse;
 //        logout = findViewById(R.id.logout);
-        progressBar = findViewById(R.id.Progress);
-        tagline = findViewById(R.id.tagline);
-        attendindi = findViewById(R.id.attendindicator);
-        // bind these to attendance card views
-        totallec = findViewById(R.id.TotalLectures);
-        attendedlec = findViewById(R.id.attended);
-        unattendedlect = findViewById(R.id.Absentlecutre);
-        attenPercent = findViewById(R.id.percentage);
+        progressBar = binding.Progress;
+        tagline = binding.tagline;
+        attendindi = binding.attendindicator;
+        profileIndi = binding.Profindi;
+
+//      bind these to attendance card views
+        totallec = binding.TotalLectures;
+        attendedlec = binding.attended;
+        unattendedlect = binding.Absentlecutre;
+        attenPercent = binding.percentage;
 //        SignIndi = findViewById(R.id.indinote);
 
-        AttendanceCard = findViewById(R.id.attendanceCard);
+        AttendanceCard = binding.attendanceCard;
+        userinfocard = binding.usercard;
+        assignmentCard = binding.AssignmentCard;
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -70,11 +84,31 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         loadUserData();
         loadAttendance();
 
+        userinfocard.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                db.collection("users").document(uid).get().addOnSuccessListener(doc -> {
+                            Boolean pfComplete = doc.getBoolean("pfComplete");
+                            if (pfComplete == null || !pfComplete) {
+                                new ProfileSetupBtm()
+                                        .show(getSupportFragmentManager(), "ProfileSetup");
+                            }
+                        })
+                        .addOnFailureListener(e -> showMessage(e.getMessage()));
+                return true;
+            }
+        });
+
         AttendanceCard.setOnClickListener(v -> {
             AttendanceBtm attendanceBtm = new AttendanceBtm();
             // pass reference of this activity to the btm to tell that this is the one who's updating the data...
             attendanceBtm.SetattendanceUpdateListerenr(this);
             attendanceBtm.show(getSupportFragmentManager(), "attendanceBtm");
+        });
+
+        assignmentCard.setOnClickListener(v->{
+            Intent intent = new Intent(this, Assignment.class);
+            startActivity(intent);
         });
 
 //        SignIndi.setText();
@@ -118,8 +152,12 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                     // Show profile setup only if incomplete
                     Boolean profileComplete = doc.getBoolean("profileComplete");
                     if (profileComplete == null || !profileComplete) {
+                        profileIndi.setAnimation(R.raw.yellowindi);
+                        warningtxt.setVisibility(View.VISIBLE);
                         new ProfileSetupBtm()
                                 .show(getSupportFragmentManager(), "ProfileSetup");
+                    } else {
+                        profileIndi.setAnimation(R.raw.complete);
                     }
                 })
                 .addOnFailureListener(e -> showMessage(e.getMessage()));
