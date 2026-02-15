@@ -72,9 +72,8 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/text_primary"
             android:alpha="0.4"
-            />
+            android:background="@color/text_primary" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/usercard"
@@ -100,11 +99,21 @@
                     android:layout_marginTop="5dp"
                     android:text="Your Info"
                     android:textColor="@color/text_primary"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    app:fontFamily="@font/cavet" />
+                    app:fontFamily="@font/googlesans" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/Profindi"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    app:lottie_autoPlay="true" />
 
                 <LinearLayout
+                    android:id="@+id/mainSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/Userinfotxt"
@@ -185,6 +194,20 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/warningtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mainSection"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/lexend"
+                    android:text="Long press to complete your profile."
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -195,8 +218,8 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/text_primary"
-            android:alpha="0.4"/>
+            android:alpha="0.4"
+            android:background="@color/text_primary" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/attendanceCard"
@@ -223,9 +246,9 @@
                     android:layout_marginTop="5dp"
                     android:text="Attendance"
                     android:textColor="@color/text_primary"
-                    android:textSize="25sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    app:fontFamily="@font/cavet" />
+                    app:fontFamily="@font/googlesans" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/attendindicator"
@@ -296,8 +319,7 @@
                             android:text="Attendance Percentage: ---"
                             android:textColor="@color/text_primary"
                             android:textSize="13sp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -390,6 +412,109 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/div3"
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:alpha="0.4"
+            android:background="@color/text_primary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Assignments Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/AssignmentCard"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_card"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Assignments"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/googlesans" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="3 Pending"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Exams Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_card"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Exams"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/googlesans" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="Next in 5 days"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
 
 
         <!--        <ImageView-->
