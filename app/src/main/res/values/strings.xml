@@ -35,6 +35,12 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="add_note">Add Note.</string>
+    <string name="AssignmentHead">Add Assignment</string>
+    <string name="Assignment_Tagline">Track your task before the deadline.</string>
+    <string name="title">Title</string>
+    <string name="assignments">Assignments</string>
+    <string name="assignActivity">Track and manage your tasks</string>
 
 
 </resources>
