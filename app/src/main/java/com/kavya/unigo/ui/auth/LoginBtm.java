@@ -22,6 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.LoginbtmBinding;
+import com.kavya.unigo.databinding.ResetDialogBinding;
 import com.kavya.unigo.ui.landing.Dashboard;
 
 public class LoginBtm extends BottomSheetDialogFragment {
@@ -31,6 +32,7 @@ public class LoginBtm extends BottomSheetDialogFragment {
     private TextView forgot;
     private ProgressBar progressBar;
     private LoginbtmBinding binding;  // for fetching the layout class
+    private ResetDialogBinding resetBinding;
     private LoginViewModel viewModel;
 
     @Override
@@ -38,6 +40,7 @@ public class LoginBtm extends BottomSheetDialogFragment {
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = LoginbtmBinding.inflate(inflater, container, false);
+//        resetBinding = ResetDialogBinding.inflate()
 
         // Bind views using ViewBinding.....
         email = binding.emailtxt;
@@ -46,6 +49,7 @@ public class LoginBtm extends BottomSheetDialogFragment {
         forgot = binding.forgot;
         login = binding.Loginbtn;
         signup = binding.signupbtn;
+        forgot = binding.forgot;
 
         // ViewModel
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -67,8 +71,7 @@ public class LoginBtm extends BottomSheetDialogFragment {
         });
 
         forgot.setOnClickListener(v -> {
-            // keep this for now (can be refactored later)
-            Toast.makeText(getContext(), "Reset handled separately", Toast.LENGTH_SHORT).show();
+            new ForgotPass().show(getActivity().getSupportFragmentManager(), "forgotPassword");
         });
 
         return binding.getRoot();
