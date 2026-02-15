@@ -1,10 +1,9 @@
 package com.kavya.unigo.data.repository;
 
-import android.util.Log;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.kavya.unigo.data.model.ForgotRes;
 import com.kavya.unigo.data.model.LoginResult;
 import com.kavya.unigo.data.model.SignUpRes;
 
@@ -21,6 +20,10 @@ public class AuthRepository {
 
     public interface SignUpCallback {
         void onResult(SignUpRes result);
+    }
+
+    public interface resetCallback{
+        void onResult(ForgotRes result);
     }
 
     public void login(String em, String pass, LoginCallback callback) {
@@ -71,4 +74,14 @@ public class AuthRepository {
             callback.onResult(new SignUpRes.SignUpError(e.getMessage()));
         });
     }
+
+    public void passReset(String em,resetCallback callback) {
+        auth.sendPasswordResetEmail(em).addOnSuccessListener(unused -> {
+            callback.onResult(new ForgotRes.success());
+        }).addOnFailureListener(e->{
+            callback.onResult(new ForgotRes.error(e.getMessage() != null ? e.getMessage() : " "));
+        });
+    }
+
+
 }
