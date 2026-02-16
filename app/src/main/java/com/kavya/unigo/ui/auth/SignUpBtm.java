@@ -82,7 +82,7 @@ public class SignUpBtm extends BottomSheetDialogFragment {
                 showMessage(((SignUpState.SignUpError) signUpState).message);
                 Signup.setEnabled(true);
             } else if (signUpState instanceof SignUpState.SingupSuccess) {
-                showMessage("\"Account created. Please verify your email before logging in.");
+                showMessage("Account created. Please verify your email before logging in.");
                 dismiss();
                 Signup.setEnabled(true);
                 clearFeild();

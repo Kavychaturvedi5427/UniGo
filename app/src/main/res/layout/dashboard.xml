@@ -461,12 +461,13 @@
                         app:fontFamily="@font/googlesans" />
 
                     <TextView
+                        android:id="@+id/pendingNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:text="3 Pending"
+                        android:text="No assignment present"
                         android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
 
