@@ -22,15 +22,15 @@ import java.util.Calendar;
 
 public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
 
-    TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni,
+    private TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, pendingNumber,
             CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi, warningtxt;
-    CardView AttendanceCard, userinfocard, assignmentCard;
-    LottieAnimationView attendindi, profileIndi;
-    ImageView logout;
-    ProgressBar progressBar;
-    FirebaseAuth auth;
-    FirebaseFirestore db;
-    String uid;
+    private CardView AttendanceCard, userinfocard, assignmentCard;
+    private LottieAnimationView attendindi, profileIndi;
+    private ImageView logout;
+    private ProgressBar progressBar;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private String uid;
 
     // Dashboard binding...
     DashboardBinding binding;
@@ -64,11 +64,11 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         attendedlec = binding.attended;
         unattendedlect = binding.Absentlecutre;
         attenPercent = binding.percentage;
-//        SignIndi = findViewById(R.id.indinote);
 
         AttendanceCard = binding.attendanceCard;
         userinfocard = binding.usercard;
         assignmentCard = binding.AssignmentCard;
+        pendingNumber = binding.pendingNumber;
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -106,7 +106,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             attendanceBtm.show(getSupportFragmentManager(), "attendanceBtm");
         });
 
-        assignmentCard.setOnClickListener(v->{
+        assignmentCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, Assignment.class);
             startActivity(intent);
         });
@@ -161,6 +161,16 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                     }
                 })
                 .addOnFailureListener(e -> showMessage(e.getMessage()));
+
+        db.collection("users").document(uid).collection("assignments")
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    int pendingAssignment = queryDocumentSnapshots.size();
+                    pendingNumber.setText(String.valueOf(pendingAssignment) + " assignments pending.");
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                });
+
     }
 
     @Override
@@ -173,7 +183,6 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
     protected void onResume() {
         super.onResume();
         getGreeting();
-        loadAttendance();
     }
 
     private void loadAttendance() {
