@@ -41,6 +41,7 @@
     <string name="title">Title</string>
     <string name="assignments">Assignments</string>
     <string name="assignActivity">Track and manage your tasks</string>
+    <string name="no_assignment_present">No assignment present.</string>
 
 
 </resources>
