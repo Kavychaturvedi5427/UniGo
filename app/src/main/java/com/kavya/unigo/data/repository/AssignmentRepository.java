@@ -24,12 +24,14 @@ public class AssignmentRepository {
             return;
         }
         String uid = user.getUid();
+        boolean isComplete = false;
         Map<String, Object> assign = new HashMap<>();
         assign.put("title", title);
         assign.put("subject", subj);
         assign.put("description", desc);
         assign.put("dueDate", duedateMillis);
         assign.put("createdAt", System.currentTimeMillis());
+        assign.put("isCompleted",isComplete);
         // when user exist then...
         db.collection("users").document(uid).collection("assignments").add(assign).addOnSuccessListener(unused -> {
             callback.onResult(new AssignmentResult.AssignSuccess());
