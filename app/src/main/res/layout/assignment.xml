@@ -6,12 +6,25 @@
     android:layout_height="match_parent"
     android:padding="12dp">
 
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="20dp"
+        android:layout_height="15dp"
+        android:src="@drawable/left"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="27dp"
+        android:contentDescription="Back"
+        android:clickable="true"
+        android:focusable="true"
+        />
+
     <!-- Header -->
     <RelativeLayout
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="13dp"
+        android:layout_below="@id/back">
 
         <TextView
             android:id="@+id/mainhead"
@@ -46,13 +59,52 @@
 
     </RelativeLayout>
 
+    <View
+        android:id="@+id/div1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/headerSection"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/gray" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_assignment_present"
+        android:visibility="gone"
+        android:fontFamily="@font/googlesans"
+        android:textColor="@color/text_primary"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
+        android:layout_below="@id/div1"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:id="@+id/Lottie2"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/empty"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/state"
+        android:translationY="-10dp"
+        />
+
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/assignmentRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/headerSection"
-        android:layout_marginTop="12dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/div1"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
         android:clipToPadding="false"
         android:paddingBottom="90dp"/>
 
