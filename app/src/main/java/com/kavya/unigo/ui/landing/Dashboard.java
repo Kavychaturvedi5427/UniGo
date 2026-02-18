@@ -27,7 +27,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
     private CardView AttendanceCard, userinfocard, assignmentCard;
     private LottieAnimationView attendindi, profileIndi;
     private ImageView logout;
-    private ProgressBar progressBar;
+//    private ProgressBar progressBar;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private String uid;
@@ -54,7 +54,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         CardCollege = binding.infocollege;
         CardCourse = binding.infocourse;
 //        logout = findViewById(R.id.logout);
-        progressBar = binding.Progress;
+//        progressBar = binding.Progress;
         tagline = binding.tagline;
         attendindi = binding.attendindicator;
         profileIndi = binding.Profindi;
@@ -165,7 +165,13 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         db.collection("users").document(uid).collection("assignments")
                 .get().addOnSuccessListener(queryDocumentSnapshots -> {
                     int pendingAssignment = queryDocumentSnapshots.size();
-                    pendingNumber.setText(String.valueOf(pendingAssignment) + " assignments pending.");
+                    if (pendingAssignment == 0) {
+                        pendingNumber.setText("No assignment pending");
+                    } else if (pendingAssignment == 1) {
+                        pendingNumber.setText("1 assignment pending");
+                    } else {
+                        pendingNumber.setText(String.valueOf(pendingAssignment) + " assignments pending");
+                    }
                 }).addOnFailureListener(e -> {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 

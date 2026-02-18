@@ -16,6 +16,7 @@
         android:contentDescription="Back"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         />
 
     <!-- Header -->
