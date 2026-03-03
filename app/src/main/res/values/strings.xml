@@ -42,6 +42,11 @@
     <string name="assignments">Assignments</string>
     <string name="assignActivity">Track and manage your tasks</string>
     <string name="no_assignment_present">No assignment present.</string>
+    <string name="noteslottie">notesLottie</string>
+    <string name="notes">Notes</string>
+    <string name="notes_tagline"><![CDATA[Save & organize your ideas]]></string>
+    <string name="no_notes_stored">No notes stored</string>
+    <string name="addnotes">addNotes</string>
 
 
 </resources>
