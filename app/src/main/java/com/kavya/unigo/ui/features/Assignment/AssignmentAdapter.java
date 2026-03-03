@@ -1,6 +1,4 @@
-package com.kavya.unigo.ui.features;
-
-import static java.util.Locale.*;
+package com.kavya.unigo.ui.features.Assignment;
 
 import android.app.AlertDialog;
 import android.graphics.Color;

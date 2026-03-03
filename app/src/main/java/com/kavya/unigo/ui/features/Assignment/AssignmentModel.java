@@ -1,4 +1,4 @@
-package com.kavya.unigo.ui.features;
+package com.kavya.unigo.ui.features.Assignment;
 
 public class AssignmentModel {
 
