@@ -484,6 +484,7 @@
 
             <!-- Exams Card -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/notesCard"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
@@ -500,22 +501,33 @@
                     android:background="@drawable/custom_card"
                     android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Exams"
-                        android:textColor="@color/text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:fontFamily="@font/googlesans" />
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/notes"
+                        android:layout_marginTop="5dp"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:text="Next in 5 days"
+                        android:text="Notes"
                         android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_above= "@id/subLine"
+                        app:fontFamily="@font/googlesans" />
+
+                    <TextView
+                        android:id="@+id/subLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to add &amp; view notes"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentBottom="true"
+                        app:fontFamily="@font/googlesans" />
 
                 </RelativeLayout>
 
