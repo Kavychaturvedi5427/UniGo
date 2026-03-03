@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.DashboardBinding;
-import com.kavya.unigo.ui.features.Assignment;
+import com.kavya.unigo.ui.features.Assignment.Assignment;
+import com.kavya.unigo.ui.features.Notes.Notes;
 
 import java.util.Calendar;
 
@@ -24,7 +24,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
 
     private TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, pendingNumber,
             CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi, warningtxt;
-    private CardView AttendanceCard, userinfocard, assignmentCard;
+    private CardView AttendanceCard, userinfocard, assignmentCard, notesCard;
     private LottieAnimationView attendindi, profileIndi;
     private ImageView logout;
 //    private ProgressBar progressBar;
@@ -33,8 +33,8 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
     private String uid;
 
     // Dashboard binding...
-    DashboardBinding binding;
-    AttendanceUpdateListener listener;
+    private DashboardBinding binding;
+    private AttendanceUpdateListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         userinfocard = binding.usercard;
         assignmentCard = binding.AssignmentCard;
         pendingNumber = binding.pendingNumber;
+        notesCard = binding.notesCard;
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -109,6 +110,11 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         assignmentCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, Assignment.class);
             startActivity(intent);
+        });
+
+        notesCard.setOnClickListener(v->{
+            Notes note = new Notes();
+            note.show(getSupportFragmentManager(),"AddNotes");
         });
 
 //        SignIndi.setText();
