@@ -40,7 +40,7 @@
             android:layout_gravity="end"
             android:contentDescription="@string/Illustration"
             android:elevation="10dp"
-            android:src="@drawable/assignmentcard"
+            android:src="@drawable/assignment"
             android:translationX="40dp"
             android:translationY="2dp" />
 
