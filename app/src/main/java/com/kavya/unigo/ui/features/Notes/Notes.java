@@ -2,6 +2,7 @@ package com.kavya.unigo.ui.features.Notes;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -166,7 +167,7 @@ public class Notes extends BottomSheetDialogFragment {
         });
 
         viewNotesBtn.setOnClickListener(v->{
-            Toast.makeText(requireContext(), "Under Construction", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(requireContext(), NotesRecycler.class));
         });
         
         
