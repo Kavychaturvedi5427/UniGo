@@ -7,16 +7,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.DashboardBinding;
+import com.kavya.unigo.ui.auth.ChooseAuth;
 import com.kavya.unigo.ui.features.Assignment.Assignment;
 import com.kavya.unigo.ui.features.Notes.Notes;
+import com.kavya.unigo.ui.features.Notes.NotesRecycler;
 
 import java.util.Calendar;
 
@@ -26,15 +34,16 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi, warningtxt;
     private CardView AttendanceCard, userinfocard, assignmentCard, notesCard;
     private LottieAnimationView attendindi, profileIndi;
-    private ImageView logout;
-//    private ProgressBar progressBar;
+    private ImageView hamberger;
+    //    private ProgressBar progressBar;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private String uid;
 
     // Dashboard binding...
     private DashboardBinding binding;
-    private AttendanceUpdateListener listener;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +80,14 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         pendingNumber = binding.pendingNumber;
         notesCard = binding.notesCard;
 
+        drawerLayout = binding.drawerLayout;
+        navigationView = binding.navigationDrawer;
+        hamberger = binding.hamburger;
+
+        hamberger.setOnClickListener(v -> {
+            binding.drawerLayout.openDrawer(GravityCompat.START);
+        });
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -84,6 +101,37 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
 
         loadUserData();
         loadAttendance();
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(GravityCompat.START);  // this will close the drawer...
+            } else if (id == R.id.nav_assignments) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(this, Assignment.class));
+            } else if (id == R.id.nav_notes) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(this, NotesRecycler.class));
+            } else if (id == R.id.nav_logout) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+                new AlertDialog.Builder(this)
+                        .setTitle("Sign Out")
+                        .setMessage("Are you sure you want to sign out?")
+                        .setPositiveButton("yes", ((dialog1, which) -> {
+                                    auth.signOut();
+                                    Toast.makeText(getApplicationContext(), "Signed out successfully", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(this, ChooseAuth.class));
+                                    finish();
+                                })
+                        )
+                        .setNegativeButton("no", ((dialog1, which) -> {
+                            dialog1.dismiss();
+                        })).show();
+            }
+            return true;
+        });
+
 
         userinfocard.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -112,9 +160,9 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             startActivity(intent);
         });
 
-        notesCard.setOnClickListener(v->{
+        notesCard.setOnClickListener(v -> {
             Notes note = new Notes();
-            note.show(getSupportFragmentManager(),"AddNotes");
+            note.show(getSupportFragmentManager(), "AddNotes");
         });
 
 //        SignIndi.setText();
