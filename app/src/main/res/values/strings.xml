@@ -47,6 +47,8 @@
     <string name="notes_tagline"><![CDATA[Save & organize your ideas]]></string>
     <string name="no_notes_stored">No notes stored</string>
     <string name="addnotes">addNotes</string>
+    <string name="open">open\n</string>
+    <string name="close">close\t\t\t</string>
 
 
 </resources>
