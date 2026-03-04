@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp">
-
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="20dp"
-        android:layout_height="15dp"
-        android:src="@drawable/left"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="27dp"
-        android:contentDescription="Back"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        />
 
     <!-- Header -->
     <RelativeLayout
         android:id="@+id/headerSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_below="@id/back">
+        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:contentDescription="Back"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/left" />
+
 
         <TextView
             android:id="@+id/mainhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
             android:text="@string/assignments"
+            android:layout_below="@id/back"
             android:textColor="@color/text_primary"
-            android:textSize="27sp"
-            android:fontFamily="@font/lexend"/>
+            android:textSize="27sp" />
 
         <TextView
             android:id="@+id/subhead"
@@ -42,10 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/mainhead"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/lexend"
             android:text="@string/assignActivity"
             android:textColor="@color/text_primary"
-            android:textSize="15sp"
-            android:fontFamily="@font/lexend"/>
+            android:textSize="15sp" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie"
@@ -56,7 +55,7 @@
             android:translationY="-10dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/checklist"/>
+            app:lottie_rawRes="@raw/checklist" />
 
     </RelativeLayout>
 
@@ -66,7 +65,7 @@
         android:layout_height="1dp"
         android:layout_below="@id/headerSection"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="10dp"
         android:background="@color/gray" />
@@ -75,28 +74,26 @@
         android:id="@+id/state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_assignment_present"
-        android:visibility="gone"
-        android:fontFamily="@font/googlesans"
-        android:textColor="@color/text_primary"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="15sp"
         android:layout_below="@id/div1"
-        />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/googlesans"
+        android:text="@string/no_assignment_present"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:visibility="gone" />
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/Lottie2"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:id="@+id/Lottie2"
+        android:layout_below="@id/state"
+        android:layout_centerHorizontal="true"
+        android:translationY="-10dp"
+        android:visibility="gone"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        android:visibility="gone"
-        app:lottie_rawRes="@raw/empty"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/state"
-        android:translationY="-10dp"
-        />
+        app:lottie_rawRes="@raw/empty" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -105,19 +102,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/div1"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
         android:clipToPadding="false"
-        android:paddingBottom="90dp"/>
+        android:paddingBottom="90dp"
+        android:visibility="gone" />
 
     <!-- Floating Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addAssignmentFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:src="@drawable/add"
-        />
+        android:src="@drawable/add" />
 
 </RelativeLayout>

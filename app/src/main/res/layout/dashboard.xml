@@ -1,562 +1,599 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:padding="12dp">
+    >
 
+    <!-- MAIN CONTENT -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/welcomeRl"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:padding="7dp">
 
-            <TextView
-                android:id="@+id/greetingstxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="Good Morning!"
-                android:textColor="@color/text_primary"
-                android:textSize="27sp" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie1"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="4dp"
-                android:rotation="-6"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/dashlottie" />
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/greetingstxt"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:text="Username"
-                android:textColor="@color/text_primary"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/tagline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:text="Your journey, simplified."
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                app:fontFamily="@font/cavet" />
-        </RelativeLayout>
-
-        <View
-            android:id="@+id/div1"
-            android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="25dp"
-            android:alpha="0.4"
-            android:background="@color/text_primary" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/usercard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp">
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_card">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/Userinfotxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp"
-                    android:text="Your Info"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/googlesans" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/Profindi"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    app:lottie_autoPlay="true" />
-
-                <LinearLayout
-                    android:id="@+id/mainSection"
+                <RelativeLayout
+                    android:id="@+id/welcomeRl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/Userinfotxt"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp">
 
-                    <!-- Profile Animation -->
+                    <!-- Hamburger -->
+                    <ImageView
+                        android:id="@+id/hamburger"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="18dp"
+                        android:padding="6dp"
+                        android:src="@drawable/menu"/>
+
+                    <!-- Greeting -->
+                    <TextView
+                        android:id="@+id/greetingstxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/hamburger"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Good Morning!"
+                        android:textColor="@color/text_primary"
+                        android:textSize="27sp" />
+
                     <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/lottie2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="12dp"
+                        android:id="@+id/lottie1"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="4dp"
+                        android:rotation="-6"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/useri" />
+                        app:lottie_rawRes="@raw/dashlottie" />
 
-
-                    <!-- User Info -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_below="@id/greetingstxt"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Username"
+                        android:textColor="@color/text_primary"
+                        android:textSize="22sp" />
 
-                        <TextView
-                            android:id="@+id/infoname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Name: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tagline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Your journey, simplified."
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:fontFamily="@font/cavet" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/infophone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Phone: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/infoemail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Email: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/infouni"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="University: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/infocollege"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="College: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:id="@+id/infocourse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Course: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/warningtext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mainSection"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="5dp"
-                    android:fontFamily="@font/lexend"
-                    android:text="Long press to complete your profile."
-                    android:textColor="@color/text_primary"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <View
-            android:id="@+id/div2"
-            android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="25dp"
-            android:alpha="0.4"
-            android:background="@color/text_primary" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/attendanceCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/div2"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_card">
-
-                <TextView
-                    android:id="@+id/Attendancetxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
+                <View
+                    android:id="@+id/div1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
-                    android:text="Attendance"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/googlesans" />
+                    android:layout_marginEnd="25dp"
+                    android:alpha="0.4"
+                    android:background="@color/text_primary" />
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/attendindicator"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/usercard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_card">
+
+                        <TextView
+                            android:id="@+id/Userinfotxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:text="Your Info"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/googlesans" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/Profindi"
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            app:lottie_autoPlay="true" />
+
+                        <LinearLayout
+                            android:id="@+id/mainSection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/Userinfotxt"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="16dp">
+
+                            <!-- Profile Animation -->
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottie2"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginEnd="12dp"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/useri" />
+
+
+                            <!-- User Info -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/infoname"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Name: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/infophone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Phone: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/infoemail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Email: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/infouni"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="University: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/infocollege"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="College: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/infocourse"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Course: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/warningtext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/mainSection"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="5dp"
+                            android:fontFamily="@font/lexend"
+                            android:text="Long press to complete your profile."
+                            android:textColor="@color/text_primary"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:id="@+id/div2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:alpha="0.4"
+                    android:background="@color/text_primary" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/attendanceCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/div2"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_card">
+
+                        <TextView
+                            android:id="@+id/Attendancetxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:text="Attendance"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/googlesans" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/attendindicator"
+                            android:layout_width="30dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true" />
+
+                        <LinearLayout
+                            android:id="@+id/info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/Attendancetxt"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="16dp">
+
+                            <!-- Profile Animation -->
+                            <ImageView
+                                android:id="@+id/img1"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginEnd="12dp"
+                                android:src="@drawable/attendance" />
+
+                            <!-- User Info -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/TotalLectures"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Total Lectures: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/attended"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Attended Lectures: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/Absentlecutre"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Unattended Lectures: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/percentage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="2dp"
+                                    android:text="Attendance Percentage: ---"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/note"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/info"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="12dp">
+
+                            <!-- Below 75% -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    app:lottie_autoPlay="true"
+                                    app:lottie_loop="true"
+                                    app:lottie_rawRes="@raw/redindi" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Below 75%"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <!-- Below 90% -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    app:lottie_autoPlay="true"
+                                    app:lottie_loop="true"
+                                    app:lottie_rawRes="@raw/yellowindi" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Below 90%"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <!-- Above 90% -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.airbnb.lottie.LottieAnimationView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    app:lottie_autoPlay="true"
+                                    app:lottie_loop="true"
+                                    app:lottie_rawRes="@raw/greenindi" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Above 90%"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:id="@+id/div3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:alpha="0.4"
+                    android:background="@color/text_primary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true" />
-
-                <LinearLayout
-                    android:id="@+id/info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/Attendancetxt"
-                    android:gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:weightSum="2">
 
-                    <!-- Profile Animation -->
-                    <ImageView
-                        android:id="@+id/img1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="12dp"
-                        android:src="@drawable/attendance" />
-
-                    <!-- User Info -->
-                    <LinearLayout
+                    <!-- Assignments Card -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/AssignmentCard"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="4dp">
 
-                        <TextView
-                            android:id="@+id/TotalLectures"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Total Lectures: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/custom_card"
+                            android:padding="16dp">
 
-                        <TextView
-                            android:id="@+id/attended"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Attended Lectures: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="5dp"
+                                android:src="@drawable/assignmentcard" />
 
-                        <TextView
-                            android:id="@+id/Absentlecutre"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Unattended Lectures: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@id/pendingNumber"
+                                android:text="Assignments"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:fontFamily="@font/googlesans" />
 
-                        <TextView
-                            android:id="@+id/percentage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="Attendance Percentage: ---"
-                            android:textColor="@color/text_primary"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/pendingNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="No assignment present"
+                                android:textColor="@color/text_primary"
+                                android:textSize="12sp" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
 
 
-                    </LinearLayout>
+                    <!-- Exams Card -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/notesCard"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/custom_card"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="5dp"
+                                android:src="@drawable/notes" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@id/subLine"
+                                android:text="Notes"
+                                android:textColor="@color/text_primary"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:fontFamily="@font/googlesans" />
+
+                            <TextView
+                                android:id="@+id/subLine"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:text="Tap to add &amp; view notes"
+                                android:textColor="@color/text_primary"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:fontFamily="@font/googlesans" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/note"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/info"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="12dp">
 
-                    <!-- Below 75% -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                <!--        <ImageView-->
+                <!--            android:id="@+id/logout"-->
+                <!--            android:layout_width="20dp"-->
+                <!--            android:layout_height="20dp"-->
+                <!--            android:src="@drawable/logout"-->
+                <!--            android:layout_below="@id/usercard"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_marginTop="50dp"-->
+                <!--            android:rotation="180"-->
+                <!--            />-->
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/redindi" />
+                <ProgressBar
+                    android:id="@+id/Progress"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:indeterminateDrawable="@drawable/progressbar"
+                    android:visibility="gone" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Below 75%"
-                            android:textColor="@color/text_primary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <!-- Below 90% -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/yellowindi" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Below 90%"
-                            android:textColor="@color/text_primary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <!-- Above 90% -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/greenindi" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Above 90%"
-                            android:textColor="@color/text_primary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <View
-            android:id="@+id/div3"
-            android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="25dp"
-            android:alpha="0.4"
-            android:background="@color/text_primary" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- Assignments Card -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/AssignmentCard"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/custom_card"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/assignmentcard"
-                        android:layout_marginTop="5dp"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Assignments"
-                        android:textColor="@color/text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_above="@id/pendingNumber"
-                        app:fontFamily="@font/googlesans" />
-
-                    <TextView
-                        android:id="@+id/pendingNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:text="No assignment present"
-                        android:textColor="@color/text_primary"
-                        android:textSize="12sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
-            <!-- Exams Card -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/notesCard"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/custom_card"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/notes"
-                        android:layout_marginTop="5dp"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Notes"
-                        android:textColor="@color/text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_above= "@id/subLine"
-                        app:fontFamily="@font/googlesans" />
-
-                    <TextView
-                        android:id="@+id/subLine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tap to add &amp; view notes"
-                        android:textColor="@color/text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_alignParentBottom="true"
-                        app:fontFamily="@font/googlesans" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-
-
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/logout"-->
-        <!--            android:layout_width="20dp"-->
-        <!--            android:layout_height="20dp"-->
-        <!--            android:src="@drawable/logout"-->
-        <!--            android:layout_below="@id/usercard"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:layout_marginTop="50dp"-->
-        <!--            android:rotation="180"-->
-        <!--            />-->
-
-        <ProgressBar
-            android:id="@+id/Progress"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:indeterminateDrawable="@drawable/progressbar"
-            android:visibility="gone" />
-
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
+    <!-- NAVIGATION DRAWER -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationDrawer"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/drawer_background"
+        app:headerLayout="@layout/header_layout"
+        app:menu="@menu/navigation_menu"
+        />
 
-</androidx.core.widget.NestedScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>
