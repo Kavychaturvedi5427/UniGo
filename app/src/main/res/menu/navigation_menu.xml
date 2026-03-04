@@ -25,7 +25,7 @@
     <item
         android:id="@+id/nav_feedback"
         android:title="Feedback"
-        android:icon="@drawable/feedback"/>
+        android:icon="@drawable/feeddialog"/>
 
     <item
         android:id="@+id/nav_about"

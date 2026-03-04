@@ -1,8 +1,11 @@
 package com.kavya.unigo.ui.landing;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
@@ -18,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.DashboardBinding;
@@ -27,6 +32,8 @@ import com.kavya.unigo.ui.features.Notes.Notes;
 import com.kavya.unigo.ui.features.Notes.NotesRecycler;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
 
@@ -107,13 +114,51 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             if (id == R.id.nav_home) {
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawer(GravityCompat.START);  // this will close the drawer...
-            } else if (id == R.id.nav_assignments) {
+            }
+            else if (id == R.id.nav_assignments) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(this, Assignment.class));
-            } else if (id == R.id.nav_notes) {
+            }
+            else if (id == R.id.nav_notes) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(this, NotesRecycler.class));
-            } else if (id == R.id.nav_logout) {
+            }
+            else if (id == R.id.nav_feedback) {
+                Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.feedback_dialog);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+                EditText input = dialog.findViewById(R.id.feedbackinput);
+                AppCompatButton send = dialog.findViewById(R.id.saveBtn), cancel = dialog.findViewById(R.id.cancelBtn);
+
+                send.setOnClickListener(v->{
+                    String feedback = input.getText().toString().trim();
+                    if(feedback.isEmpty()){
+                        input.setError("Please enter feedback");
+                        return;
+                    }
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("feedback", feedback);
+                    map.put("email",auth.getCurrentUser().getEmail());
+                    map.put("uid",auth.getCurrentUser().getUid());
+                    map.put("timestamp", FieldValue.serverTimestamp());
+                    
+                    db.collection("feedback").add(map).addOnSuccessListener(documentReference -> {
+                        Toast.makeText(this, "Thanks for sharing your feedback.", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }).addOnFailureListener(e->{
+                        Log.d("feedback error",e.getMessage());
+                        Toast.makeText(this, "Failed to send feedback.", Toast.LENGTH_SHORT).show();
+                    });
+                });
+
+                cancel.setOnClickListener(unused->{
+                    dialog.dismiss();
+                });
+
+                dialog.show();
+            }
+            else if (id == R.id.nav_logout) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 new AlertDialog.Builder(this)
                         .setTitle("Sign Out")
