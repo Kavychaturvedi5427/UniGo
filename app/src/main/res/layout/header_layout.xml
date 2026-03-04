@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><!--default header layout height is 176dp-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="222dp"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/custom_header_drawer">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/userLottie"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/useri"
+        android:layout_marginBottom="6dp"/>
+
+    <TextView
+        android:id="@+id/Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/lexend"
+        android:text="Kavya Chaturvedi"
+        android:textColor="@color/text_primary"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/UserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/lexend"
+        android:text="ss3207428@gmail.com"
+        android:textColor="@color/text_primary"
+        android:textSize="13sp"
+        android:alpha="0.7"/>
+
+
+    <TextView
+        android:id="@+id/Tagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/lexend"
+        android:text="UniGo Student Dashboard"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        />
+
+
+
+</LinearLayout>

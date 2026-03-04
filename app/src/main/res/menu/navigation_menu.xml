@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/nav_assignments"
+        android:title="Saved Assignments"
+        android:icon="@drawable/assignnav"/>
+
+    <item
+        android:id="@+id/nav_notes"
+        android:title="Saved Notes"
+        android:icon="@drawable/notesnav"/>
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+        android:icon="@drawable/settings"
+        />
+
+    <item
+        android:id="@+id/nav_feedback"
+        android:title="Feedback"
+        android:icon="@drawable/feedback"/>
+
+    <item
+        android:id="@+id/nav_about"
+        android:title="About"
+        android:icon="@drawable/info"/>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Sign Out"
+        android:icon="@drawable/logout"/>
+
+</menu>
