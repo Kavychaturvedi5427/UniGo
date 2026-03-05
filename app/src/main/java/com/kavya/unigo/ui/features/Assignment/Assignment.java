@@ -65,7 +65,6 @@ public class Assignment extends AppCompatActivity {
 
         // Back click...
         back.setOnClickListener(v->{
-            startActivity(new Intent(this, Dashboard.class));
             finish();
         });
 

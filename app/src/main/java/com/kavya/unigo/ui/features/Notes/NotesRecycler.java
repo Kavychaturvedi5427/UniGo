@@ -1,7 +1,9 @@
 package com.kavya.unigo.ui.features.Notes;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,6 +30,7 @@ public class NotesRecycler extends AppCompatActivity {
     private FirebaseAuth auth;
     private String uid;
     private FloatingActionButton addnotesFab;
+    private ImageView back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class NotesRecycler extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.notesRecycler);
         addnotesFab = findViewById(R.id.addNotesFab);
+        back = findViewById(R.id.back);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         noteList = new ArrayList<>();
@@ -50,6 +54,9 @@ public class NotesRecycler extends AppCompatActivity {
         addnotesFab.setOnClickListener(v->{
             Notes notes = new Notes();
             notes.show(getSupportFragmentManager(),"AddNotesBtm");
+        });
+        back.setOnClickListener(v->{
+            finish();
         });
     }
 
