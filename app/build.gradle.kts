@@ -52,6 +52,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata:2.8.6")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.vision.common)
+    implementation("com.google.mlkit:text-recognition:16.0.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     implementation("com.github.chrisbanes:PhotoView:2.3.0")
 
