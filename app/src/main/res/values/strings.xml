@@ -49,6 +49,8 @@
     <string name="addnotes">addNotes</string>
     <string name="open">open\n</string>
     <string name="close">close\t\t\t</string>
+    <string name="app_desc">UniGo helps students manage assignments,\ntrack attendance, and stay updated with\nexam schedules — all in one place.</string>
+    <string name="about_last_cmt">Built for students by student\n\t\t\t\t</string>
 
 
 </resources>
