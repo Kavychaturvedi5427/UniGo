@@ -36,13 +36,15 @@
 
                 <!-- Illustration -->
                 <ImageView
-                    android:id="@+id/notesIllustration"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:id="@+id/previewIllustration"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_alignTop="@id/previewTitle"
                     android:layout_alignParentEnd="true"
                     android:alpha="0.9"
-                    android:src="@drawable/notesillus" />
+                    android:translationY="-15dp"
+                    android:translationX="15dp"
+                    android:src="@drawable/recheck" />
 
                 <!-- Subtitle -->
                 <TextView
