@@ -10,11 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -28,6 +26,7 @@ import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.DashboardBinding;
 import com.kavya.unigo.ui.auth.ChooseAuth;
 import com.kavya.unigo.ui.features.Assignment.Assignment;
+import com.kavya.unigo.ui.features.Exams.Exams;
 import com.kavya.unigo.ui.features.Notes.Notes;
 import com.kavya.unigo.ui.features.Notes.NotesRecycler;
 
@@ -39,7 +38,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
 
     private TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, pendingNumber,
             CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi, warningtxt;
-    private CardView AttendanceCard, userinfocard, assignmentCard, notesCard;
+    private CardView AttendanceCard, userinfocard, assignmentCard, notesCard, examsCard;
     private LottieAnimationView attendindi, profileIndi;
     private ImageView hamberger;
     //    private ProgressBar progressBar;
@@ -86,6 +85,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         assignmentCard = binding.AssignmentCard;
         pendingNumber = binding.pendingNumber;
         notesCard = binding.notesCard;
+        examsCard = binding.examCard;
 
         drawerLayout = binding.drawerLayout;
         navigationView = binding.navigationDrawer;
@@ -210,15 +210,10 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             note.show(getSupportFragmentManager(), "AddNotes");
         });
 
-//        SignIndi.setText();
+        examsCard.setOnClickListener(v->{
+            new Exams().show(getSupportFragmentManager(),"examsBtm");
+        });
 
-//        logout.setOnClickListener(v->{
-//            progressBar.setVisibility(View.VISIBLE);
-//            auth.signOut();
-////            startActivity(new Intent(this, ChooseAuth.class));
-//            finish();
-//
-//        });
     }
 
     private void loadUserData() {
