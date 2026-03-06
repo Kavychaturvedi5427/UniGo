@@ -41,6 +41,7 @@
 
         <activity android:name=".ui.features.Notes.NotesRecycler" />
         <activity android:name=".ui.features.Notes.FullImageActivity" />
+        <activity android:name=".ui.about.AboutApp"/>
     </application>
 
 
