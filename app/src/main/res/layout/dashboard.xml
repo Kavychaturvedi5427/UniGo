@@ -98,8 +98,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:alpha="0.4"
-                    android:background="@color/text_primary" />
+                    android:background="#33000000" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/usercard"
@@ -244,8 +243,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:alpha="0.4"
-                    android:background="@color/text_primary" />
+                    android:background="#33000000" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/attendanceCard"
@@ -446,8 +444,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:alpha="0.4"
-                    android:background="@color/text_primary" />
+                    android:background="#33000000"  />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -578,8 +575,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:alpha="0.4"
-                    android:background="@color/text_primary" />
+                    android:background="#33000000"  />
 
                 <TextView
                     android:id="@+id/examtxt"
@@ -613,37 +609,167 @@
                             android:id="@+id/examimage"
                             android:layout_width="110dp"
                             android:layout_height="110dp"
-                            android:src="@drawable/exams"
-                            android:layout_alignParentStart="true"/>
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/exams" />
 
                         <TextView
                             android:id="@+id/examPlaceholder"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/examimage"
-                            android:layout_marginStart="12dp"
                             android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/examimage"
+                            android:maxLines="6"
                             android:text="Tap to upload exam schedule"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
-                            android:maxLines="6"
-                            android:visibility="visible"/>
+                            android:visibility="visible" />
 
                         <TextView
                             android:id="@+id/examScheduleText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/examimage"
-                            android:layout_marginStart="12dp"
                             android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/examimage"
+                            android:maxLines="6"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
-                            android:maxLines="6"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
+                <View
+                    android:id="@+id/div5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="#33000000"  />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/motivationCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_card"
+                        android:orientation="horizontal"
+                        android:padding="20dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/quotes" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/googlesans"
+                                android:text="Daily Motivation 💡"
+                                android:textColor="@color/text_primary"
+
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/motivationText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/lexend"
+                                android:text="Small progress every day adds up to big results."
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+                <View
+                    android:id="@+id/div6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.6dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="#33000000"  />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/upcomingCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_card"
+                        android:orientation="horizontal"
+                        android:padding="20dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center_vertical"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/comming" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/googlesans"
+                                android:text="Upcoming Features 🔜"
+                                android:textColor="@color/text_primary"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/lexend"
+                                android:text="• Smart exam schedule parser\n• GPA tracker\n• Study planner\n• Smart notifications"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <ProgressBar
                     android:id="@+id/Progress"
