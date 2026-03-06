@@ -51,6 +51,9 @@
     <string name="close">close\t\t\t</string>
     <string name="app_desc">UniGo helps students manage assignments,\ntrack attendance, and stay updated with\nexam schedules — all in one place.</string>
     <string name="about_last_cmt">Built for students by student\n\t\t\t\t</string>
+    <string name="vers">v1.0.0</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="app_version">App Version :</string>
 
 
 </resources>
