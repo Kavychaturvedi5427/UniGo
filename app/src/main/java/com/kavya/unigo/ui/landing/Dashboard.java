@@ -19,11 +19,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.DashboardBinding;
+import com.kavya.unigo.ui.about.AboutApp;
 import com.kavya.unigo.ui.auth.ChooseAuth;
 import com.kavya.unigo.ui.features.Assignment.Assignment;
 import com.kavya.unigo.ui.features.Exams.Exams;
@@ -33,11 +35,12 @@ import com.kavya.unigo.ui.features.Notes.NotesRecycler;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
 
     private TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, pendingNumber,
-            CardCollege, CardCourse, tagline, totallec, attendedlec, unattendedlect, attenPercent, SignIndi, warningtxt;
+            CardCollege, CardCourse, totallec, attendedlec, unattendedlect, attenPercent, motivationText, warningtxt;
     private CardView AttendanceCard, userinfocard, assignmentCard, notesCard, examsCard;
     private LottieAnimationView attendindi, profileIndi;
     private ImageView hamberger;
@@ -68,13 +71,11 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         CardUni = binding.infouni;
         CardCollege = binding.infocollege;
         CardCourse = binding.infocourse;
-//        logout = findViewById(R.id.logout);
-//        progressBar = binding.Progress;
-        tagline = binding.tagline;
+
+        motivationText = binding.motivationText;
         attendindi = binding.attendindicator;
         profileIndi = binding.Profindi;
 
-//      bind these to attendance card views
         totallec = binding.TotalLectures;
         attendedlec = binding.attended;
         unattendedlect = binding.Absentlecutre;
@@ -109,21 +110,29 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         loadUserData();
         loadAttendance();
 
+        String[] quotes = {"Small progress every day adds up to big results.",
+                "Push yourself, because no one else will do it for you.",
+                "Success is built on daily discipline.",
+                "Your future is created by what you do today.",
+                "Dream big. Work hard. Stay consistent."
+        };
+        Random random = new Random();
+        binding.motivationText.setText(quotes[random.nextInt(quotes.length)]);
+
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
                 Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawer(GravityCompat.START);  // this will close the drawer...
-            }
-            else if (id == R.id.nav_assignments) {
+            } else if (id == R.id.nav_assignments) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(this, Assignment.class));
-            }
-            else if (id == R.id.nav_notes) {
+            } else if (id == R.id.nav_notes) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(this, NotesRecycler.class));
-            }
-            else if (id == R.id.nav_feedback) {
+            } else if (id == R.id.nav_settings) {
+                Snackbar.make(binding.getRoot(), "Settings will be available in the coming days", Snackbar.LENGTH_LONG).show();
+            } else if (id == R.id.nav_feedback) {
                 Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.feedback_dialog);
                 dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -131,34 +140,35 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                 EditText input = dialog.findViewById(R.id.feedbackinput);
                 AppCompatButton send = dialog.findViewById(R.id.saveBtn), cancel = dialog.findViewById(R.id.cancelBtn);
 
-                send.setOnClickListener(v->{
+                send.setOnClickListener(v -> {
                     String feedback = input.getText().toString().trim();
-                    if(feedback.isEmpty()){
+                    if (feedback.isEmpty()) {
                         input.setError("Please enter feedback");
                         return;
                     }
                     Map<String, Object> map = new HashMap<>();
                     map.put("feedback", feedback);
-                    map.put("email",auth.getCurrentUser().getEmail());
-                    map.put("uid",auth.getCurrentUser().getUid());
+                    map.put("email", auth.getCurrentUser().getEmail());
+                    map.put("uid", auth.getCurrentUser().getUid());
                     map.put("timestamp", FieldValue.serverTimestamp());
-                    
+
                     db.collection("feedback").add(map).addOnSuccessListener(documentReference -> {
                         Toast.makeText(this, "Thanks for sharing your feedback.", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
-                    }).addOnFailureListener(e->{
-                        Log.d("feedback error",e.getMessage());
+                    }).addOnFailureListener(e -> {
+                        Log.d("feedback error", e.getMessage());
                         Toast.makeText(this, "Failed to send feedback.", Toast.LENGTH_SHORT).show();
                     });
                 });
 
-                cancel.setOnClickListener(unused->{
+                cancel.setOnClickListener(unused -> {
                     dialog.dismiss();
                 });
 
                 dialog.show();
-            }
-            else if (id == R.id.nav_logout) {
+            } else if (id == R.id.nav_about) {
+                startActivity(new Intent(this, AboutApp.class));
+            } else if (id == R.id.nav_logout) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 new AlertDialog.Builder(this)
                         .setTitle("Sign Out")
@@ -210,8 +220,8 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             note.show(getSupportFragmentManager(), "AddNotes");
         });
 
-        examsCard.setOnClickListener(v->{
-            new Exams().show(getSupportFragmentManager(),"examsBtm");
+        examsCard.setOnClickListener(v -> {
+            new Exams().show(getSupportFragmentManager(), "examsBtm");
         });
 
     }
