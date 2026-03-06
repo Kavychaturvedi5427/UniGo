@@ -27,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.AddNotesBtmBinding;
+import com.kavya.unigo.utils.NotificationHelper;
 
 public class Notes extends BottomSheetDialogFragment {
 
@@ -109,7 +110,7 @@ public class Notes extends BottomSheetDialogFragment {
                 }
 
             } else if (notesState instanceof NotesState.Success) {
-
+                NotificationHelper.showNotification(requireContext(),NotificationHelper.CHANNEL_NOTES,"Note added","Note added scuccessfully.");
                 Toast.makeText(requireContext(),
                         "Upload Successfully",
                         Toast.LENGTH_SHORT).show();

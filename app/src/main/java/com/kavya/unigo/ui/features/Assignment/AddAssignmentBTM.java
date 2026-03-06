@@ -19,6 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.AssignmentBtmBinding;
+import com.kavya.unigo.utils.NotificationHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -93,6 +94,7 @@ public class AddAssignmentBTM extends BottomSheetDialogFragment {
 
             else if (state instanceof AssignmentState.AssignmentSuccess) {
                 progressBar.setVisibility(View.GONE);
+                NotificationHelper.showNotification(requireContext(),NotificationHelper.CHANNEL_ASSIGNMENT,"Assignment added","Assignment added successfully");
                 Toast.makeText(getContext(),
                         "Assignment stored successfully.",
                         Toast.LENGTH_SHORT).show();
