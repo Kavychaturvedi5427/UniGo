@@ -50,7 +50,7 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
         Attended = view.findViewById(R.id.attendedtxt);
         Total = view.findViewById(R.id.totallectxt);
         save = view.findViewById(R.id.savebtn);
-        cancel = view.findViewById(R.id.cancelbtn);
+        cancel = view.findViewById(R.id.Cancel);
         progressBar = view.findViewById(R.id.Progress);
 
         save.setOnClickListener(v -> {
@@ -65,6 +65,7 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
             if (attendedStr.isEmpty() || totalStr.isEmpty()) {
                 Attended.setError("Required");
                 Total.setError("Required");
+                progressBar.setVisibility(View.GONE);
                 return;
             }
             // typecasting to int...
@@ -123,12 +124,10 @@ public class AttendanceBtm extends BottomSheetDialogFragment {
                 Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             });
 
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dismiss();
-                }
-            });
+
+        });
+        cancel.setOnClickListener(v1 -> {
+            dismiss();
         });
         return view;
     }
