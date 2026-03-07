@@ -46,11 +46,6 @@ public class MainSplash extends AppCompatActivity {
             }
         }
 
-        // worker will run every 12hr...
-        PeriodicWorkRequest assignmentReminder = new PeriodicWorkRequest.Builder(AssignmentReminder.class,12, TimeUnit.HOURS).build();
-
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork("assignment_reminder", ExistingPeriodicWorkPolicy.KEEP, assignmentReminder);
-
         AppCompatImageView logo = findViewById(R.id.logo);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade);
         logo.post(() -> logo.startAnimation(animation));
