@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
@@ -60,13 +61,13 @@ public class AssignmentAdapter
                     .setTitle("Complete Assignment")
                     .setMessage("Mark \"" + assignment.getTitle() + "\" as completed?\nIt will be removed from your assignments.")
                     .setPositiveButton("Yes delete", (dialog, which) -> {
-
                         FirebaseFirestore.getInstance()
                                 .collection("users")
                                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                 .collection("assignments")
                                 .document(assignment.getId())
                                 .delete();
+                        Snackbar.make(holder.itemView,"Assignment deleted successfully.",Snackbar.LENGTH_SHORT).show();
                     })
                     .setNegativeButton("Not now", (dialog, which) -> {
                         holder.check.setChecked(false);
