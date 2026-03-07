@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
 import com.kavya.unigo.data.model.SignUpRes;
 import com.kavya.unigo.databinding.SignupBtmBinding;
+import com.kavya.unigo.utils.NotificationHelper;
 
 import java.util.*;
 
@@ -83,6 +84,7 @@ public class SignUpBtm extends BottomSheetDialogFragment {
                 Signup.setEnabled(true);
             } else if (signUpState instanceof SignUpState.SingupSuccess) {
                 showMessage("Account created. Please verify your email before logging in.");
+                NotificationHelper.showNotification(getContext(), NotificationHelper.GENERAL_CHANNEL,"Signup Successful","Your signup is successful, now quickly verify your email and you're good to go.");
                 dismiss();
                 Signup.setEnabled(true);
                 clearFeild();
