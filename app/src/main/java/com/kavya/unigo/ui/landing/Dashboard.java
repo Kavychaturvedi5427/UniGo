@@ -21,6 +21,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
@@ -40,7 +41,7 @@ import java.util.Random;
 public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
 
     private TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, pendingNumber,
-            CardCollege, CardCourse, totallec, attendedlec, unattendedlect, attenPercent, motivationText, warningtxt;
+            CardCollege, CardCourse, totallec, attendedlec, unattendedlect, attenPercent, motivationText, warningtxt, nav_username, nav_useremail;
     private CardView AttendanceCard, userinfocard, assignmentCard, notesCard, examsCard;
     private LottieAnimationView attendindi, profileIndi;
     private ImageView hamberger;
@@ -119,6 +120,12 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         Random random = new Random();
         binding.motivationText.setText(quotes[random.nextInt(quotes.length)]);
 
+        View headerView = navigationView.getHeaderView(0);
+
+        // fetching them using the db call made by the userinfo card...
+        nav_username = headerView.findViewById(R.id.Username);
+        nav_useremail = headerView.findViewById(R.id.UserEmail);
+
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
@@ -176,7 +183,6 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                         .setPositiveButton("yes", ((dialog1, which) -> {
                                     auth.signOut();
                                     Toast.makeText(getApplicationContext(), "Signed out successfully", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(this, ChooseAuth.class));
                                     finish();
                                 })
                         )
@@ -239,6 +245,12 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
 
                     // Welcome name
                     String fullName = doc.getString("name");
+
+                    //setting the name and email of the navigation drawer header...
+                    nav_username.setText(fullName);
+                    nav_useremail.setText(auth.getCurrentUser().getEmail());
+
+
                     if (fullName != null && !fullName.isEmpty()) {
                         welcomeName.setText(fullName);
                     } else {
