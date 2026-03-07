@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp">
+
+        <!-- Drag Handle -->
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="28dp"
+            android:layout_height="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.SmallComponent" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/completetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/lexend"
+            android:text="Edit Profile"
+            android:textColor="@color/text_primary"
+            android:textSize="25sp" />
+
+        <!-- Illustration -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:rotation="-14"
+            android:translationX="15dp"
+            app:lottie_rawRes="@raw/profilesetup"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/completesubtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/completetxt"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lexend"
+            android:text="Edit your personal and academic details."
+            android:textColor="@color/text_primary"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/div1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/lottie"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:background="#33000000" />
+
+        <TextView
+            android:id="@+id/Entername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/div1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="Name"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/NameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/Entername"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/simple_input_bg"
+            android:hint="Enter your name"
+            android:paddingHorizontal="14dp"
+            android:inputType="text"
+            android:fontFamily="@font/lexend"
+            android:textSize="14sp"/>
+
+        <!-- PHONE -->
+        <TextView
+            android:id="@+id/EnterPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NameTxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/phone"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/phoneTxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/EnterPhone"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/simple_input_bg"
+            android:hint="@string/formphone"
+            android:paddingHorizontal="14dp"
+            android:inputType="phone"
+            android:fontFamily="@font/lexend"
+            android:textSize="14sp"/>
+
+        <!-- UNIVERSITY -->
+        <TextView
+            android:id="@+id/EnterUni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phoneTxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/university"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/uniTxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/EnterUni"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/simple_input_bg"
+            android:hint="@string/formuniversity"
+            android:paddingHorizontal="14dp"
+            android:inputType="textCapWords"
+            android:fontFamily="@font/lexend"
+            android:textSize="14sp"/>
+
+        <!-- COLLEGE -->
+        <TextView
+            android:id="@+id/EnterCollege"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uniTxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/college"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/collegeTxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/EnterCollege"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/simple_input_bg"
+            android:hint="@string/formcollege"
+            android:paddingHorizontal="14dp"
+            android:inputType="textCapWords"
+            android:fontFamily="@font/lexend"
+            android:textSize="14sp"/>
+
+
+        <!-- COURSE -->
+        <TextView
+            android:id="@+id/EnterCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/collegeTxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/course"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/courseTxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/EnterCourse"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/simple_input_bg"
+            android:hint="@string/formcourse"
+            android:paddingHorizontal="14dp"
+            android:inputType="textCapWords"
+            android:fontFamily="@font/lexend"
+            android:textSize="14sp"/>
+
+        <View
+            android:id="@+id/div2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/courseTxt"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="#33000000"
+            />
+
+        <!-- BUTTONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/div2"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/confirmbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/custom_btn"
+                android:text="@string/confirm"
+                android:layout_margin="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_btn"
+                android:text="@string/cancel"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/Progress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:indeterminateDrawable="@drawable/progressbar" />
+
+    </RelativeLayout>
+
+</ScrollView>
