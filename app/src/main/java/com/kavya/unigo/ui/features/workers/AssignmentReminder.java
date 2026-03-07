@@ -1,14 +1,17 @@
 package com.kavya.unigo.ui.features.workers;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kavya.unigo.utils.NotificationHelper;
 
 public class AssignmentReminder extends Worker {
@@ -28,25 +31,45 @@ public class AssignmentReminder extends Worker {
             return Result.success();
         }
 
-        uid = auth.getCurrentUser().getUid();
-        db.collection("users").document(uid).collection("assignments").get().addOnSuccessListener(queryDocumentSnapshots -> {
+        try {
+
+            uid = auth.getCurrentUser().getUid();
+
+            QuerySnapshot snapshot = Tasks.await(
+                    db.collection("users")
+                            .document(uid)
+                            .collection("assignments")
+                            .get()
+            );
+
             long currTime = System.currentTimeMillis();
 
-            for (DocumentSnapshot doc : queryDocumentSnapshots) {
+            for (DocumentSnapshot doc : snapshot.getDocuments()) {
+
                 String title = doc.getString("title");
-                Long dueDate = Long.parseLong(doc.getString("dueDate"));
+                String dueDateStr = doc.getString("dueDate");
+                if (dueDateStr == null) continue;
 
-                if(dueDate == null) continue;
-
+                long dueDate = Long.parseLong(dueDateStr);
                 long diff = dueDate - currTime;
                 long hours = diff / (1000 * 60 * 60);
 
-                if(hours <= 24 && hours > 0){
-                    NotificationHelper.showNotification(getApplicationContext(),NotificationHelper.CHANNEL_ASSIGNMENT,"Assignment Due",title + " assignment due in 24 hours");
+                Log.d("AssignmentWorker", "Hours left: " + hours);
+                if (hours <= 24 && hours > 23) {
+
+                    NotificationHelper.showNotification(
+                            getApplicationContext(),
+                            NotificationHelper.CHANNEL_ASSIGNMENT,
+                            "Assignment Due",
+                            title + " assignment due in 24 hours"
+                    );
                 }
             }
-        });
 
-        return Result.success();
+            return Result.success();
+
+        } catch (Exception e) {
+            return Result.retry();
+        }
     }
 }
