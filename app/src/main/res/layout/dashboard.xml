@@ -221,7 +221,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/warningtext"
+                            android:id="@+id/profilehintTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/mainSection"
@@ -350,11 +350,21 @@
 
                         </LinearLayout>
 
+                        <TextView
+                            android:id="@+id/bunktxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/info"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/lexend"
+                            android:text="Lectures you can skip --" />
+
                         <LinearLayout
                             android:id="@+id/note"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/info"
+                            android:layout_below="@id/bunktxt"
                             android:gravity="center"
                             android:orientation="horizontal"
                             android:paddingTop="4dp"
@@ -444,7 +454,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:background="#33000000"  />
+                    android:background="#33000000" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -575,7 +585,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:background="#33000000"  />
+                    android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/examtxt"
@@ -640,6 +650,7 @@
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <View
                     android:id="@+id/div5"
                     android:layout_width="match_parent"
@@ -647,7 +658,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
-                    android:background="#33000000"  />
+                    android:background="#33000000" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/motivationCard"
@@ -655,10 +666,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="20dp"
-                    app:cardCornerRadius="20dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="6dp">
 
                     <LinearLayout
@@ -705,6 +716,7 @@
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <View
                     android:id="@+id/div6"
                     android:layout_width="match_parent"
@@ -712,7 +724,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="25dp"
-                    android:background="#33000000"  />
+                    android:background="#33000000" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/upcomingCard"
@@ -721,10 +733,10 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="30dp"
-                    app:cardCornerRadius="20dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="6dp">
 
                     <LinearLayout
@@ -762,7 +774,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
                                 android:fontFamily="@font/lexend"
-                                android:text="• Smart exam schedule parser\n• GPA tracker\n• Study planner\n• Smart notifications"
+                                android:text="@string/upcomingFeatures"
                                 android:textSize="15sp" />
 
                         </LinearLayout>
@@ -779,6 +791,27 @@
                     android:indeterminateDrawable="@drawable/progressbar"
                     android:visibility="gone" />
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UniGo • 2026"
+                    android:fontFamily="@font/googlesans"
+                    android:textColor="@color/black"
+                    android:alpha="0.7"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Built By Kavya Chaturvedi"
+                    android:textColor="@color/black"
+                    android:alpha="0.7"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="11dp"
+                    />
             </LinearLayout>
 
 
