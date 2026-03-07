@@ -43,9 +43,9 @@
                     android:contentDescription="@string/Illustration"
                     android:elevation="10dp"
                     android:src="@drawable/journey"
-                    android:translationX="15dp"
-                    android:translationY="-20dp"
-                    android:rotation="-10"
+                    android:translationX="10dp"
+                    android:translationY="-10dp"
+                    android:rotation="-5"
                     />
 
                 <TextView
