@@ -19,6 +19,7 @@ public class NotificationHelper {
     public static final String CHANNEL_ASSIGNMENT = "assignment";
     public static final String CHANNEL_NOTES = "notes";
     public static final String GENERAL_CHANNEL = "general";
+    public static final String ATTENDANCE_CHANNEL = "attendance";
 
     public static void createChannel(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -28,10 +29,12 @@ public class NotificationHelper {
             NotificationChannel assignmentChannel = new NotificationChannel(CHANNEL_ASSIGNMENT, "Assignment Notification", NotificationManager.IMPORTANCE_HIGH);
             NotificationChannel notesChannel = new NotificationChannel(CHANNEL_NOTES, "Notes Notification", NotificationManager.IMPORTANCE_HIGH);
             NotificationChannel generalChannel = new NotificationChannel(GENERAL_CHANNEL, "General Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel attendanceCannel = new NotificationChannel(ATTENDANCE_CHANNEL, "Attendance Notification", NotificationManager.IMPORTANCE_HIGH);
 
             manager.createNotificationChannel(assignmentChannel);
             manager.createNotificationChannel(notesChannel);
             manager.createNotificationChannel(generalChannel);
+            manager.createNotificationChannel(attendanceCannel);
         }
     }
 
