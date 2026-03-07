@@ -21,31 +21,32 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kavya.unigo.R;
 import com.kavya.unigo.databinding.DashboardBinding;
 import com.kavya.unigo.ui.about.AboutApp;
-import com.kavya.unigo.ui.auth.ChooseAuth;
 import com.kavya.unigo.ui.features.Assignment.Assignment;
+import com.kavya.unigo.ui.features.EditProfile.Editprofile;
 import com.kavya.unigo.ui.features.Exams.Exams;
 import com.kavya.unigo.ui.features.Notes.Notes;
 import com.kavya.unigo.ui.features.Notes.NotesRecycler;
+import com.kavya.unigo.utils.AttendanceUtils;
+import com.kavya.unigo.utils.QuotesProvider;
+import com.kavya.unigo.utils.ReminderScheduler;
+
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
-public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener {
+public class Dashboard extends AppCompatActivity implements AttendanceUpdateListener, ProfileUpdatedListener {
 
     private TextView greetings, welcomeName, CardName, CardPhone, CardEmail, CardUni, pendingNumber,
-            CardCollege, CardCourse, totallec, attendedlec, unattendedlect, attenPercent, motivationText, warningtxt, nav_username, nav_useremail;
+            CardCollege, CardCourse, totallec, attendedlec, unattendedlect, attenPercent, motivationText, profilehinttxt, nav_username, nav_useremail, bunktxt;
     private CardView AttendanceCard, userinfocard, assignmentCard, notesCard, examsCard;
     private LottieAnimationView attendindi, profileIndi;
     private ImageView hamberger;
-    //    private ProgressBar progressBar;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private String uid;
@@ -62,9 +63,12 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         binding = DashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        ReminderScheduler.scheduleAll(this);
+
         greetings = binding.greetingstxt;
         welcomeName = binding.name;
-        warningtxt = binding.warningtext;
+        profilehinttxt = binding.profilehintTxt;
+        bunktxt = binding.bunktxt;
 
         CardName = binding.infoname;
         CardPhone = binding.infophone;
@@ -117,8 +121,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                 "Your future is created by what you do today.",
                 "Dream big. Work hard. Stay consistent."
         };
-        Random random = new Random();
-        binding.motivationText.setText(quotes[random.nextInt(quotes.length)]);
+        motivationText.setText(QuotesProvider.provideQuotes());
 
         View headerView = navigationView.getHeaderView(0);
 
@@ -194,20 +197,25 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         });
 
 
-        userinfocard.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                db.collection("users").document(uid).get().addOnSuccessListener(doc -> {
-                            Boolean pfComplete = doc.getBoolean("pfComplete");
-                            if (pfComplete == null || !pfComplete) {
-                                new ProfileSetupBtm()
-                                        .show(getSupportFragmentManager(), "ProfileSetup");
-                            }
-                        })
-                        .addOnFailureListener(e -> showMessage(e.getMessage()));
-                return true;
-            }
-        });
+        db.collection("users").document(uid).get().addOnSuccessListener(doc -> {
+                    Boolean pfComplete = doc.getBoolean("profileComplete");
+                    if (pfComplete == null || !pfComplete) {
+                        profilehinttxt.setVisibility(View.VISIBLE);
+                        profilehinttxt.setText("Long press to complete the profile");
+                        userinfocard.setOnLongClickListener(v -> {
+                            new ProfileSetupBtm().show(getSupportFragmentManager(), "Complete_Profile");
+                            return true;
+                        });
+                    } else {
+                        profilehinttxt.setVisibility(View.VISIBLE);
+                        profilehinttxt.setText("Long press to edit profile");
+                        userinfocard.setOnLongClickListener(v -> {
+                            new Editprofile(this).show(getSupportFragmentManager(), "Edit_Profile");
+                            return true;
+                        });
+                    }
+                })
+                .addOnFailureListener(e -> showMessage(e.getMessage()));
 
         AttendanceCard.setOnClickListener(v -> {
             AttendanceBtm attendanceBtm = new AttendanceBtm();
@@ -269,7 +277,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                     Boolean profileComplete = doc.getBoolean("profileComplete");
                     if (profileComplete == null || !profileComplete) {
                         profileIndi.setAnimation(R.raw.yellowindi);
-                        warningtxt.setVisibility(View.VISIBLE);
+                        profilehinttxt.setVisibility(View.VISIBLE);
                         new ProfileSetupBtm()
                                 .show(getSupportFragmentManager(), "ProfileSetup");
                     } else {
@@ -332,6 +340,9 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                     long total = attendance.get("total") != null
                             ? (long) attendance.get("total") : 0;
 
+                    String message = AttendanceUtils.getBunkMessage(total, attended);
+                    bunktxt.setText(message);
+
                     long unattended = total - attended;
 
                     int percent = total > 0
@@ -382,5 +393,10 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
     @Override
     public void onUpdate() {
         loadAttendance();
+    }
+
+    @Override
+    public void onProfileUpdated() {
+        loadUserData();
     }
 }
