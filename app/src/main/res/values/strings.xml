@@ -54,6 +54,7 @@
     <string name="vers">v1.0.0</string>
     <string name="terms_of_use">Terms of Use</string>
     <string name="app_version">App Version :</string>
+    <string name="upcomingFeatures">• Smart exam schedule parser\n• GPA tracker\n• Study planner</string>
 
 
 </resources>
