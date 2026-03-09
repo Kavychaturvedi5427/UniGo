@@ -1,15 +1,15 @@
 package com.kavya.unigo.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
 import com.kavya.unigo.ui.features.workers.AssignmentReminder;
-import com.kavya.unigo.ui.features.workers.AttendacneReminder;
+import com.kavya.unigo.ui.features.workers.AttendanceReminder;
 import com.kavya.unigo.ui.features.workers.AttendanceStatusWorker;
 import com.kavya.unigo.ui.features.workers.QuotesWorker;
 
@@ -19,17 +19,47 @@ import java.util.concurrent.TimeUnit;
 public class ReminderScheduler {
 
     public static void scheduleAll(Context context) {
-        scheduleAssignmentReminder(context);
-        scheduleAttendacneReminder(context);
+
+        SharedPreferences prefs = context.getSharedPreferences("general_notify", Context.MODE_PRIVATE);
+
+        boolean general = prefs.getBoolean("general_notify", true);
+        boolean assignment = prefs.getBoolean("assign_notify", true);
+        boolean attendance = prefs.getBoolean("attendance_notify", true);
+        boolean notes = prefs.getBoolean("notes_notify", true);
+
+        if (!general) {
+
+            WorkManager.getInstance(context).cancelAllWork();
+            return;
+        }
+
+        if (assignment) {
+            scheduleAssignmentReminder(context);
+        } else {
+            WorkManager.getInstance(context).cancelUniqueWork("assignment_reminder");
+        }
+
+        if (attendance) {
+            scheduleAttendacneReminder(context);
+        } else {
+            WorkManager.getInstance(context).cancelUniqueWork("attendance_reminder");
+        }
+
+        if (notes) {
+            scheduleBunkReminder(context);
+        } else {
+            WorkManager.getInstance(context).cancelUniqueWork("bunk_reminder");
+        }
+
+        // motivational quotes always run
         scheduleMotivationWorkder(context);
-        scheduleBunkReminder(context);
     }
 
     private static void scheduleAssignmentReminder(Context context) {
 
 //        // worker will run every 12hr...
 
-        Log.d("AssignmentWorker", "workerScheduled");
+//        Log.d("AssignmentWorker", "workerScheduled");
         PeriodicWorkRequest assignmentReminder = new PeriodicWorkRequest.Builder(AssignmentReminder.class, 12, TimeUnit.HOURS).build();
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork("assignment_reminder", ExistingPeriodicWorkPolicy.UPDATE, assignmentReminder);
@@ -40,7 +70,7 @@ public class ReminderScheduler {
     }
 
     private static void scheduleAttendacneReminder(Context context) {
-        Log.d("AttendanceScheduler", "attendanceworkder Scheduled");
+//        Log.d("AttendanceScheduler", "attendanceworkder Scheduled");
         Calendar now = Calendar.getInstance();    // this gets current time...
         Calendar sixPm = Calendar.getInstance();    // this represents 6pm of every day...
 
@@ -54,14 +84,14 @@ public class ReminderScheduler {
         long delay = sixPm.getTimeInMillis() - now.getTimeInMillis();   // calculating the delay till next 6pm...
 
         // worker ....
-        PeriodicWorkRequest attedanceReminder = new PeriodicWorkRequest.Builder(AttendacneReminder.class, 1, TimeUnit.DAYS).setInitialDelay(delay, TimeUnit.MILLISECONDS).build();
+        PeriodicWorkRequest attedanceReminder = new PeriodicWorkRequest.Builder(AttendanceReminder.class, 1, TimeUnit.DAYS).setInitialDelay(delay, TimeUnit.MILLISECONDS).build();
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork("attendance_reminder", ExistingPeriodicWorkPolicy.UPDATE, attedanceReminder);
 
     }
 
     private static void scheduleMotivationWorkder(Context context) {
-        Log.d("Motivation Scheduler", "motivationWorker Scheduled");
+//        Log.d("Motivation Scheduler", "motivationWorker Scheduled");
         Calendar now = Calendar.getInstance();
         Calendar morning = Calendar.getInstance();
 
@@ -81,7 +111,7 @@ public class ReminderScheduler {
     }
 
     private static void scheduleBunkReminder(Context context) {
-        Log.d("Bunk Scheduler", "BunkWorker Scheduled");
+//        Log.d("Bunk Scheduler", "BunkWorker Scheduled");
         Calendar now = Calendar.getInstance();
         Calendar eightAm = Calendar.getInstance();
 
