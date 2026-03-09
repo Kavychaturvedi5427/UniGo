@@ -72,13 +72,32 @@ public class AddAssignmentBTM extends BottomSheetDialogFragment {
 
 
         binding.saveAssignment.setOnClickListener(v -> {
+
             String title = binding.titletxt.getText().toString().trim();
             String subject = binding.subjtxt.getText().toString().trim();
             String desc = binding.desctxt.getText().toString().trim();
 
-            // sending data to the Viewmodel for validation...
-            viewModel.StoreAssignment(title, subject, desc, dueDateMillis);
+            // Validation
+            if (title.isEmpty()) {
+                binding.titletxt.setError("Enter assignment title");
+                return;
+            }
+
+            if (subject.isEmpty()) {
+                binding.subjtxt.setError("Enter subject");
+                return;
+            }
+
+            if (dueDateMillis == 0) {
+                Toast.makeText(requireContext(),
+                        "Please select a due date",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // If all valid
             progressBar.setVisibility(View.VISIBLE);
+            viewModel.StoreAssignment(title, subject, desc, dueDateMillis);
         });
 
         observeState();

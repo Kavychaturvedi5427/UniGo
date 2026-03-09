@@ -27,15 +27,12 @@ public class AddAssignmentViewModel extends ViewModel {
             return;
         }
         State.setValue(new AssignmentState.AssignmentLoading());
-        repository.StoreAssign(title, subj, desc, DuedateMillis, new AssignmentRepository.AssignCallback() {
-            @Override
-            public void onResult(AssignmentResult result) {
-                if (result instanceof AssignmentResult.AssignSuccess) {
-                    State.postValue(new AssignmentState.AssignmentSuccess());
-                } else if (result instanceof AssignmentResult.AssignError) {
-                    String errorMes = ((AssignmentResult.AssignError) result).message;
-                    State.postValue(new AssignmentState.AssignmentError(errorMes));
-                }
+        repository.StoreAssign(title, subj, desc, DuedateMillis, result -> {
+            if (result instanceof AssignmentResult.AssignSuccess) {
+                State.postValue(new AssignmentState.AssignmentSuccess());
+            } else if (result instanceof AssignmentResult.AssignError) {
+                String errorMes = ((AssignmentResult.AssignError) result).message;
+                State.postValue(new AssignmentState.AssignmentError(errorMes));
             }
         });
 
