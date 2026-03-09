@@ -62,10 +62,10 @@
                 <View
                     android:id="@+id/div1"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.6dp"
                     android:layout_below="@id/subtitle"
                     android:layout_marginTop="16dp"
-                    android:background="@color/gray" />
+                    android:background="@color/view" />
 
                 <!-- Image Preview Card -->
                 <androidx.cardview.widget.CardView
@@ -169,6 +169,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/custom_btn"
                         android:text="Cancel"
+                        android:textAllCaps="false"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -178,6 +179,7 @@
                         android:layout_margin="10dp"
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
+                        android:textAllCaps="false"
                         android:background="@drawable/custom_btn"
                         android:text="Save"
                         android:textStyle="bold" />

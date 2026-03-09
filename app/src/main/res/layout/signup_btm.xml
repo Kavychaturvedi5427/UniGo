@@ -58,12 +58,12 @@
         <View
             android:id="@+id/div1"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.6dp"
             android:layout_below="@id/welcomesubtxt"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <TextView
             android:id="@+id/EnterName"
@@ -200,12 +200,12 @@
         <View
             android:id="@+id/div2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.6dp"
             android:layout_below="@id/confrimpasslayout"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signupbtn"

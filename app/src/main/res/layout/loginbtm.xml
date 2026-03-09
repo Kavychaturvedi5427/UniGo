@@ -61,12 +61,12 @@
         <View
             android:id="@+id/div1"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.6dp"
             android:layout_below="@id/welcomeLogin"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <TextView
             android:id="@+id/EnterEmail"
@@ -137,12 +137,12 @@
         <View
             android:id="@+id/div2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.6dp"
             android:layout_below="@id/passlayout"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Loginbtn"
@@ -152,6 +152,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_btn"
+            android:textAllCaps="false"
             android:text="Login"
             android:elevation="15dp"
             />
@@ -171,12 +172,12 @@
         <View
             android:id="@+id/div3"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.6dp"
             android:layout_below="@id/forgot"
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <TextView
             android:id="@+id/signup"
@@ -195,6 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/signup"
             android:layout_centerHorizontal="true"
+            android:textAllCaps="false"
             android:layout_marginTop="20dp"
             android:background="@drawable/custom_btn"
             android:text="Sign Up"

@@ -216,12 +216,14 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_btn"
                 android:text="@string/cancel"
+                android:textAllCaps="false"
                 android:layout_margin="10dp"/>
         </LinearLayout>
 
         <ProgressBar
             android:id="@+id/Progress"
             android:layout_width="40dp"
+            android:textAllCaps="false"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:visibility="gone"

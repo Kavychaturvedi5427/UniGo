@@ -60,12 +60,12 @@
         <View
             android:id="@+id/div1"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.6dp"
             android:layout_below="@id/welcomeLogin"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <TextView
             android:id="@+id/Enterattended"
@@ -149,12 +149,12 @@
         <View
             android:id="@+id/div2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/validation"
+            android:layout_height="0.6dp"
+            android:layout_below="@id/validation"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
-            android:background="@color/gray" />
+            android:background="@color/view" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -172,6 +172,7 @@
                 android:background="@drawable/custom_btn"
                 android:elevation="15dp"
                 android:text="@string/save"
+                android:textAllCaps="false"
                 android:layout_margin="5dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -180,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_btn"
                 android:elevation="15dp"
+                android:textAllCaps="false"
                 android:text="@string/cancel"
                 android:layout_margin="5dp"/>
         </LinearLayout>
