@@ -24,6 +24,16 @@ build/
 */build/
 .gradle-cache/
 
+# Release builds
+app/release/
+
+# Baseline profile artifacts
+*.dm
+
+# Android Studio deployment cache
+.idea/deploymentTargetSelector.xml
+
+
 # ==============================
 
 # Local configuration
