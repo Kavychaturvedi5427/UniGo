@@ -238,9 +238,9 @@ CloudinaryClient.java
 <td align="center"><b>About App</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/SplahActivity.jpeg" width="250"/></td>
-<td><img src="screenshots/ChooseAuth.jpeg" width="250"/></td>
-<td><img src="screenshots/AboutApp.jpeg" width="250"/></td>
+<td><img src="Screenshots/SplahActivity.jpeg" width="250"/></td>
+<td><img src="Screenshots/ChooseAuth.jpeg" width="250"/></td>
+<td><img src="Screenshots/AboutApp.jpeg" width="250"/></td>
 </tr>
 </table>
 
@@ -252,9 +252,9 @@ CloudinaryClient.java
 <td align="center"><b>Settings</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/Login.jpeg" width="250"/></td>
-<td><img src="screenshots/SignUp.jpeg" width="250"/></td>
-<td><img src="screenshots/Settings.jpeg" width="250"/></td>
+<td><img src="Screenshots/Login.jpeg" width="250"/></td>
+<td><img src="Screenshots/SignUp.jpeg" width="250"/></td>
+<td><img src="Screenshots/Settings.jpeg" width="250"/></td>
 </tr>
 </table>
 
@@ -264,7 +264,7 @@ CloudinaryClient.java
 <td align="center"><b>Main Dashboard</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/Dashboard.png" width="250"/></td>
+<td><img src="Screenshots/Dashboard.png" width="250"/></td>
 </tr>
 </table>
 
@@ -275,8 +275,8 @@ CloudinaryClient.java
 <td align="center"><b>Add Assignment</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/Assignment.jpeg" width="250"/></td>
-<td><img src="screenshots/AddAssignment.jpeg" width="250"/></td>
+<td><img src="Screenshots/Assignment.jpeg" width="250"/></td>
+<td><img src="Screenshots/AddAssignment.jpeg" width="250"/></td>
 </tr>
 </table>
 
@@ -287,8 +287,8 @@ CloudinaryClient.java
 <td align="center"><b>Add Notes</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/Notes.jpeg" width="250"/></td>
-<td><img src="screenshots/Addnotes.jpeg" width="250"/></td>
+<td><img src="Screenshots/Notes.jpeg" width="250"/></td>
+<td><img src="Screenshots/Addnotes.jpeg" width="250"/></td>
 </tr>
 </table>
 
