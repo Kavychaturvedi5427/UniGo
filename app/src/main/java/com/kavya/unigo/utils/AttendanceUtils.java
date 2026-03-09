@@ -7,7 +7,7 @@ public class AttendanceUtils {
 
         String message;
         if (safebunk > 0) {
-            message = "You can skip " + safebunk + "lectures today.";
+            message = "You can skip " + safebunk + " lectures today.";
         } else {
             message = "Don't skip any lectures today.";
         }
