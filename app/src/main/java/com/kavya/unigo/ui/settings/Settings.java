@@ -29,6 +29,7 @@ import com.kavya.unigo.ui.about.AboutApp;
 import com.kavya.unigo.ui.auth.ChooseAuth;
 import com.kavya.unigo.ui.features.EditProfile.Editprofile;
 import com.kavya.unigo.ui.landing.ProfileUpdatedListener;
+import com.kavya.unigo.utils.ReminderScheduler;
 
 public class Settings extends AppCompatActivity {
     private SettingsDialogBinding binding;
@@ -45,7 +46,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = SettingsDialogBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        prefs = getSharedPreferences("notification_settings",MODE_PRIVATE);
+        prefs = getSharedPreferences("general_notify", MODE_PRIVATE);
 
         // binding viewGroups...
         back = binding.back;
@@ -70,8 +71,8 @@ public class Settings extends AppCompatActivity {
 
         // notification settings...
         // --> fetching the previous state of the switches...
-        generalNotify.setChecked(prefs.getBoolean("general_notify",true));
-        AssignNotify.setChecked(prefs.getBoolean("assign_notify",true));
+        generalNotify.setChecked(prefs.getBoolean("general_notify", true));
+        AssignNotify.setChecked(prefs.getBoolean("assign_notify", true));
         notesNotify.setChecked(prefs.getBoolean("notes_notify", true));
         AttendanceNotify.setChecked(prefs.getBoolean("attendance_notify", true));
 
@@ -80,48 +81,47 @@ public class Settings extends AppCompatActivity {
 
             prefs.edit().putBoolean("general_notify", isChecked).apply();
 
-            if(!isChecked){
+            if (!isChecked) {
 
-                // turn off all switches
                 AssignNotify.setChecked(false);
                 notesNotify.setChecked(false);
                 AttendanceNotify.setChecked(false);
 
-                // save preferences
-                prefs.edit()
-                        .putBoolean("assign_notify", false)
-                        .putBoolean("notes_notify", false)
-                        .putBoolean("attendance_notify", false)
-                        .apply();
-
-                // disable switches
                 AssignNotify.setEnabled(false);
                 notesNotify.setEnabled(false);
                 AttendanceNotify.setEnabled(false);
 
-            }else{
+            } else {
 
-                // enable switches again
                 AssignNotify.setEnabled(true);
                 notesNotify.setEnabled(true);
                 AttendanceNotify.setEnabled(true);
+
+                AssignNotify.setChecked(prefs.getBoolean("assign_notify", true));
+                notesNotify.setChecked(prefs.getBoolean("notes_notify", true));
+                AttendanceNotify.setChecked(prefs.getBoolean("attendance_notify", true));
             }
+
+            ReminderScheduler.scheduleAll(this);
         });
 
-        AssignNotify.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-            Log.d("WorkerTest","Assignment Notification disabled");
-            prefs.edit().putBoolean("assign_notify",isChecked).apply();
-        }));
+        AssignNotify.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefs.edit().putBoolean("assign_notify", isChecked).apply();
+            ReminderScheduler.scheduleAll(this);
+        });
 
         notesNotify.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-            Log.d("WorkerTest","Notes Notification disabled");
-            prefs.edit().putBoolean("notes_notify",isChecked).apply();
+//            Log.d("WorkerTest","Notes Notification disabled");
+            prefs.edit().putBoolean("notes_notify", isChecked).apply();
         }));
 
-        AttendanceNotify.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-            Log.d("WorkerTest","Attendance Notification disabled");
-            prefs.edit().putBoolean("attendance_notify",isChecked).apply();
-        }));
+        AttendanceNotify.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            prefs.edit().putBoolean("attendance_notify", isChecked).apply();
+
+            ReminderScheduler.scheduleAll(this);
+
+        });
 
 
         // Account settings...
@@ -154,7 +154,7 @@ public class Settings extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("Delete Account").setMessage("Are you sure you want to delete your UniGo account?").setPositiveButton("yes", (dialog1, which) -> {
                 progressBar.setVisibility(View.VISIBLE);
-                if(auth.getCurrentUser() != null){
+                if (auth.getCurrentUser() != null) {
                     String uid = auth.getCurrentUser().getUid();
 
                     // deleting firebase data..
@@ -167,12 +167,12 @@ public class Settings extends AppCompatActivity {
                             // clearing activity stack...
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-                        }).addOnFailureListener(e->{
+                        }).addOnFailureListener(e -> {
                             progressBar.setVisibility(View.GONE);
                             Snackbar.make(binding.getRoot(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
                         });
 
-                    }).addOnFailureListener(e->{
+                    }).addOnFailureListener(e -> {
                         progressBar.setVisibility(View.GONE);
                         Snackbar.make(binding.getRoot(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     });
