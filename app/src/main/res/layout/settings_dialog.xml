@@ -51,6 +51,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Manage account and preferences"
                 android:textSize="14sp"
+                android:layout_marginStart="30dp"
                 android:textColor="@color/text_primary"
                 android:fontFamily="@font/lexend"/>
 
