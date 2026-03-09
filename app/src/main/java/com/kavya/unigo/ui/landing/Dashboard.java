@@ -31,6 +31,7 @@ import com.kavya.unigo.ui.features.EditProfile.Editprofile;
 import com.kavya.unigo.ui.features.Exams.Exams;
 import com.kavya.unigo.ui.features.Notes.Notes;
 import com.kavya.unigo.ui.features.Notes.NotesRecycler;
+import com.kavya.unigo.ui.settings.Settings;
 import com.kavya.unigo.utils.AttendanceUtils;
 import com.kavya.unigo.utils.QuotesProvider;
 import com.kavya.unigo.utils.ReminderScheduler;
@@ -140,8 +141,6 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             } else if (id == R.id.nav_notes) {
                 drawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(this, NotesRecycler.class));
-            } else if (id == R.id.nav_settings) {
-                Snackbar.make(binding.getRoot(), "Settings will be available in the coming days", Snackbar.LENGTH_LONG).show();
             } else if (id == R.id.nav_feedback) {
                 Dialog dialog = new Dialog(this);
                 dialog.setContentView(R.layout.feedback_dialog);
@@ -176,6 +175,8 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                 });
 
                 dialog.show();
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(this, Settings.class));
             } else if (id == R.id.nav_about) {
                 startActivity(new Intent(this, AboutApp.class));
             } else if (id == R.id.nav_logout) {
