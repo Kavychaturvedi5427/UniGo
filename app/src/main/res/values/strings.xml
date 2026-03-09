@@ -53,8 +53,13 @@
     <string name="about_last_cmt">Built for students by student\n\t\t\t\t</string>
     <string name="vers">v1.0.0</string>
     <string name="terms_of_use">Terms of Use</string>
-    <string name="app_version">App Version :</string>
+    <string name="app_version">Version : </string>
     <string name="upcomingFeatures">• Smart exam schedule parser\n• GPA tracker\n• Study planner</string>
+    <string name="DeveloperName">Kavya Chaturvedi</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="github">GitHub</string>
+    <string name="privacy_policy">Privacy Policy</string>
 
 
 </resources>
