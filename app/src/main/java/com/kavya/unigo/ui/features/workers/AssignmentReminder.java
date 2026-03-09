@@ -28,11 +28,11 @@ public class AssignmentReminder extends Worker {
     @Override
     public Result doWork() {
 
-        SharedPreferences prefs = getApplicationContext().getSharedPreferences("general_notify",Context.MODE_PRIVATE);
-        boolean assignmentenabled = prefs.getBoolean("assign_notify",true);
-        boolean generalEnabled = prefs.getBoolean("notification_settings", true);
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("general_notify", Context.MODE_PRIVATE);
+        boolean assignmentenabled = prefs.getBoolean("assign_notify", true);
+        boolean generalEnabled = prefs.getBoolean("general_notify", true);
 
-        if(!generalEnabled || !assignmentenabled){
+        if (!generalEnabled || !assignmentenabled) {
             return Result.success();
         }
 

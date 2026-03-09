@@ -33,7 +33,7 @@ public class AttendanceStatusWorker extends Worker {
     public Result doWork() {
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("general_notify", Context.MODE_PRIVATE);
-        boolean generalEnabled = prefs.getBoolean("notification_settings", true);
+        boolean generalEnabled = prefs.getBoolean("general_notify", true);
         boolean attendenabled = prefs.getBoolean("attendance_notify", true);
 
         if (!generalEnabled || !attendenabled) {
