@@ -2,7 +2,9 @@ package com.kavya.unigo.ui.features.Notes;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -110,7 +112,22 @@ public class Notes extends BottomSheetDialogFragment {
                 }
 
             } else if (notesState instanceof NotesState.Success) {
-                NotificationHelper.showNotification(requireContext(),NotificationHelper.CHANNEL_NOTES,"Note added","Note added scuccessfully.");
+
+                SharedPreferences prefs =
+                        requireContext().getSharedPreferences("general_notify", Context.MODE_PRIVATE);
+
+                boolean general = prefs.getBoolean("general_notify", true);
+                boolean notesEnabled = prefs.getBoolean("notes_notify", true);
+
+                if (general && notesEnabled) {
+                    NotificationHelper.showNotification(
+                            requireContext(),
+                            NotificationHelper.CHANNEL_NOTES,
+                            "Note added",
+                            "Note added successfully."
+                    );
+                }
+
                 Toast.makeText(requireContext(),
                         "Upload Successfully",
                         Toast.LENGTH_SHORT).show();
@@ -118,8 +135,7 @@ public class Notes extends BottomSheetDialogFragment {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
-
-            } else if (notesState instanceof NotesState.Error) {
+            }else if (notesState instanceof NotesState.Error) {
 
                 NotesState.Error error = (NotesState.Error) notesState;
 
