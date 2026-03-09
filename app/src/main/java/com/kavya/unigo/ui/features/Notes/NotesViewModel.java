@@ -2,6 +2,7 @@ package com.kavya.unigo.ui.features.Notes;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -92,11 +93,13 @@ public class NotesViewModel extends ViewModel {
 
                 @Override
                 public void onFailure(Call<CloudinaryResponse> call, Throwable t) {
+
                     uploadState.setValue(new NotesState.Error(t.getMessage()));
                 }
             });
 
         } catch (Exception e) {
+//            Log.d("noteUpload",e.getMessage());
             uploadState.setValue(new NotesState.Error(e.getMessage()));
         }
     }
