@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.work.WorkManager;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.navigation.NavigationView;
@@ -47,7 +48,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
             CardCollege, CardCourse, totallec, attendedlec, unattendedlect, attenPercent, motivationText, profilehinttxt, nav_username, nav_useremail, bunktxt;
     private CardView AttendanceCard, userinfocard, assignmentCard, notesCard, examsCard;
     private LottieAnimationView attendindi, profileIndi;
-    private ImageView hamberger;
+    private ImageView hamberger, reset;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private String uid;
@@ -97,9 +98,23 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
         drawerLayout = binding.drawerLayout;
         navigationView = binding.navigationDrawer;
         hamberger = binding.hamburger;
+        reset = binding.reset;
 
         hamberger.setOnClickListener(v -> {
             binding.drawerLayout.openDrawer(GravityCompat.START);
+        });
+
+        reset.setOnClickListener(v->{
+            new AlertDialog.Builder(this).setTitle("Reset Attendance").setMessage("This will delete all attendance data. Continue?").setPositiveButton("yes",(dialog, which) ->{
+                db.collection("users").document(uid).update("attendance", FieldValue.delete()).addOnSuccessListener(unused -> {
+                   Snackbar.make(v, "Attendance reset successfully", Snackbar.LENGTH_SHORT).show();
+                   loadAttendance();
+                }).addOnFailureListener(e->{
+                    Snackbar.make(v, e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                });
+            }).setNegativeButton("no", (dialog1, which) ->{
+               dialog1.dismiss();
+            }).show();
         });
 
         auth = FirebaseAuth.getInstance();
@@ -115,6 +130,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
 
         loadUserData();
         loadAttendance();
+        loadPendingAssignments();
 
         String[] quotes = {"Small progress every day adds up to big results.",
                 "Push yourself, because no one else will do it for you.",
@@ -286,22 +302,29 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                     }
                 })
                 .addOnFailureListener(e -> showMessage(e.getMessage()));
+    }
 
-        db.collection("users").document(uid).collection("assignments")
-                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+    private void loadPendingAssignments() {
+        db.collection("users")
+                .document(uid)
+                .collection("assignments")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+
                     int pendingAssignment = queryDocumentSnapshots.size();
+
                     if (pendingAssignment == 0) {
                         pendingNumber.setText("No assignment pending");
                     } else if (pendingAssignment == 1) {
                         pendingNumber.setText("1 assignment pending");
                     } else {
-                        pendingNumber.setText(String.valueOf(pendingAssignment) + " assignments pending");
+                        pendingNumber.setText(pendingAssignment + " assignments pending");
                     }
-                }).addOnFailureListener(e -> {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                });
-
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
     }
 
     @Override
@@ -314,6 +337,7 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
     protected void onResume() {
         super.onResume();
         getGreeting();
+        loadPendingAssignments();
     }
 
     private void loadAttendance() {
@@ -323,9 +347,18 @@ public class Dashboard extends AppCompatActivity implements AttendanceUpdateList
                 .addOnSuccessListener(doc -> {
 
                     if (!doc.exists() || !doc.contains("attendance")) {
-                        // First-time user (no attendance yet)
+                        // First-time user (no attendance yet) or the attendance is resetted...
+                        totallec.setText("Total Lectures: 0");
+                        attendedlec.setText("Attended Lectures: 0");
+                        unattendedlect.setText("Unattended Lectures: 0");
+                        attenPercent.setText("Attendance Percentage: 0%");
+                        bunktxt.setText("No attendance recorded");
+
+                        attendindi.cancelAnimation();
+                        attendindi.setVisibility(View.GONE);
                         return;
                     }
+                    attendindi.setVisibility(View.VISIBLE);
 
                     Object attendanceObj = doc.get("attendance");
                     if (!(attendanceObj instanceof java.util.Map)) return;
