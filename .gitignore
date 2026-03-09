@@ -1,39 +1,92 @@
-# ===== Android Studio / IntelliJ =====
+# ==============================
+
+# Android / IntelliJ / Studio
+
+# ==============================
+
 *.iml
 .idea/
-!.idea/codeStyles/
-!.idea/runConfigurations/
-
-# ===== Gradle =====
-.gradle/
-build/
-
-# ===== Local configuration =====
-local.properties
-
-# ===== Firebase =====
-app/google-services.json
-
-# ===== OS generated files =====
-.DS_Store
-Thumbs.db
-
-# ===== Android build outputs =====
-/captures
-.externalNativeBuild/
-.cxx/
-
-# ===== Logs =====
-*.log
-
-# ===== Keystore files (VERY IMPORTANT) =====
-*.jks
-*.keystore
-
-# ===== Misc =====
 .idea/caches/
 .idea/libraries/
 .idea/modules.xml
 .idea/workspace.xml
 .idea/navEditor.xml
 .idea/assetWizardSettings.xml
+
+# ==============================
+
+# Gradle
+
+# ==============================
+
+.gradle/
+build/
+*/build/
+.gradle-cache/
+
+# ==============================
+
+# Local configuration
+
+# ==============================
+
+local.properties
+
+# ==============================
+
+# Firebase / Secrets
+
+# ==============================
+
+app/google-services.json
+
+# ==============================
+
+# Android build outputs
+
+# ==============================
+
+*.apk
+*.aab
+*.ap_
+/captures
+.externalNativeBuild/
+.cxx/
+
+# ==============================
+
+# Keystore files (VERY IMPORTANT)
+
+# ==============================
+
+*.jks
+*.keystore
+*.pem
+*.key
+
+# ==============================
+
+# Logs
+
+# ==============================
+
+*.log
+
+# ==============================
+
+# OS generated files
+
+# ==============================
+
+.DS_Store
+Thumbs.db
+
+# ==============================
+
+# Misc
+
+# ==============================
+
+tmp/
+temp/
+*.swp
