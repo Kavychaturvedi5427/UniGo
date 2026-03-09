@@ -29,7 +29,7 @@ app/release/
 
 # Baseline profile artifacts
 *.dm
-baslineProfiles/
+baselineProfiles/
 
 # Android Studio deployment cache
 .idea/deploymentTargetSelector.xml
