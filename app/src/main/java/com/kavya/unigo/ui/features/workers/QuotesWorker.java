@@ -1,6 +1,9 @@
 package com.kavya.unigo.ui.features.workers;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
@@ -18,6 +21,14 @@ public class QuotesWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("general_notify",MODE_PRIVATE);
+        boolean enabled = prefs.getBoolean("general_notify",true);
+
+        if(!enabled){
+            return Result.success();
+        }
+
         String quote = QuotesProvider.provideQuotes();
         NotificationHelper.showNotification(getApplicationContext(),NotificationHelper.GENERAL_CHANNEL,"Daily Motivation", quote);
         return Result.success();

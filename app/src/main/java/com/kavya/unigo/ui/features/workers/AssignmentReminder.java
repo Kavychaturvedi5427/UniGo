@@ -1,6 +1,7 @@
 package com.kavya.unigo.ui.features.workers;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,15 @@ public class AssignmentReminder extends Worker {
     @NonNull
     @Override
     public Result doWork() {
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("general_notify",Context.MODE_PRIVATE);
+        boolean assignmentenabled = prefs.getBoolean("assign_notify",true);
+        boolean generalEnabled = prefs.getBoolean("notification_settings", true);
+
+        if(!generalEnabled || !assignmentenabled){
+            return Result.success();
+        }
+
 
         if (auth.getCurrentUser() == null) {
             return Result.success();

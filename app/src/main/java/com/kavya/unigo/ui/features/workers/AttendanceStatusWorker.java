@@ -1,6 +1,8 @@
 package com.kavya.unigo.ui.features.workers;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
@@ -29,6 +31,15 @@ public class AttendanceStatusWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("general_notify", Context.MODE_PRIVATE);
+        boolean generalEnabled = prefs.getBoolean("notification_settings", true);
+        boolean attendenabled = prefs.getBoolean("attendance_notify", true);
+
+        if (!generalEnabled || !attendenabled) {
+
+            return Result.success();
+        }
         if (auth.getCurrentUser() == null) return Result.success();
         try {
             uid = auth.getCurrentUser().getUid();
