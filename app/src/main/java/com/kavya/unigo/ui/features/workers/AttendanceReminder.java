@@ -11,9 +11,9 @@ import androidx.work.WorkerParameters;
 
 import com.kavya.unigo.utils.NotificationHelper;
 
-public class AttendacneReminder extends Worker {
+public class AttendanceReminder extends Worker {
 
-    public AttendacneReminder(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+    public AttendanceReminder(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
 
@@ -23,7 +23,7 @@ public class AttendacneReminder extends Worker {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("general_notify",MODE_PRIVATE);
         boolean attendeaceenabled = pref.getBoolean("attendance_notify",true);
         boolean generalEnabled = pref.getBoolean("general_notify", true);
-        if(!generalEnabled && !attendeaceenabled){
+        if(!generalEnabled || !attendeaceenabled){
             return Result.success();
         }
 
