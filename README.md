@@ -16,7 +16,7 @@ UniGo integrates modern Android development practices with cloud services to pro
 ## Notes Management
 - Upload handwritten or printed notes as images
 - Cloud storage integration using Cloudinary
-- Grid-based UI for organized browsing
+- Card-based UI for organized browsing
 - Full-screen image viewing with zoom support using PhotoView
 - Integration-ready support for text recognition using Google ML Kit
 
