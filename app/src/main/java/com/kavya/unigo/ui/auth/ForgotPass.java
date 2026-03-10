@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kavya.unigo.databinding.ResetDialogBinding;
 
@@ -51,10 +52,8 @@ public class ForgotPass extends DialogFragment {
 
         cnf.setOnClickListener(v -> {
             String em = email.getText().toString().trim();
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:"));
-            startActivity(Intent.createChooser(intent, "Open email app"));
             viewModel.handleReset(em);
+            Snackbar.make(v, "Password reset link has been sent to the mail provided.", Snackbar.LENGTH_SHORT).show();
         });
         cancel.setOnClickListener(v -> {
             dismiss();
