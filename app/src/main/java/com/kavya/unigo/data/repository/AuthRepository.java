@@ -56,16 +56,21 @@ public class AuthRepository {
             data.put("isProfileComplete", false);
 
             db.collection("users").document(uid).set(data).addOnSuccessListener(unused -> {
-                user.sendEmailVerification().addOnSuccessListener(unused1 -> {
-//                    Log.d("EMAIL_VERIFY", "Verification email SENT");  for debugging purpose...
+                if (!user.isEmailVerified()) {
+                    user.sendEmailVerification().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            auth.signOut();
+                            callback.onResult(new SignUpRes.SignUpSucc());
+                        } else {
+                            callback.onResult(
+                                    new SignUpRes.SignUpError("Failed to send verification email")
+                            );
+                        }
+                    });
+                } else {
                     auth.signOut();
                     callback.onResult(new SignUpRes.SignUpSucc());
-                }).addOnFailureListener(e -> {
-//                    Log.e("EMAIL_VERIFY", "Verification FAILED", e);   for debugging purpose...
-                    callback.onResult(
-                            new SignUpRes.SignUpError("Failed to send verification email")
-                    );
-                });
+                }
             }).addOnFailureListener(e -> {
                 callback.onResult(new SignUpRes.SignUpError("Account created but failed to save profile."));
                 return;
