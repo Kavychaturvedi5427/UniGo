@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/googlesans"
             android:text="@string/app_name"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
@@ -43,10 +43,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/googlesans"
             android:text="@string/tagLine"
             android:textSize="15sp"
-            android:textStyle="bold" />
+             />
 
 <!--        custom progress bar ....-->
         <ProgressBar
@@ -76,26 +76,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/googlesans"
             android:text="@string/copyright"
             android:textSize="13sp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/googlesans"
             android:text="@string/version"
             android:textSize="13sp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/googlesans"
             android:text="@string/DevMessage"
             android:textSize="13sp"
-            android:textStyle="bold" />
+             />
 
     </LinearLayout>
 
