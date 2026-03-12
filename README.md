@@ -1,5 +1,8 @@
 # UniGo
 
+[![Get it on Google Play](https://img.shields.io/badge/Download-Google%20Play-green?style=for-the-badge&logo=google-play)](https://play.google.com/store/apps/details?id=com.kavya.unigo)
+
+
 UniGo is a comprehensive university companion Android application designed to help students manage their academic life efficiently. The application centralizes essential academic tools such as assignment tracking, exam scheduling, and digitized note storage into a single platform.
 
 UniGo integrates modern Android development practices with cloud services to provide a reliable and scalable academic management solution.
